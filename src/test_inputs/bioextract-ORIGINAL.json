@@ -1,0 +1,23 @@
+{
+     "id": 0,
+     "name": "",
+     "description": "",
+     "inputs": [
+         {
+             "id": 0,
+             "name": "",
+             "namespace": "",
+             "description": "",
+             "required": true
+         }
+     ],
+     "outputs": [
+         {
+             "id": 0,
+             "name": "",
+             "namespace": "",
+             "description": ""
+         }
+     ]
+     }
+}

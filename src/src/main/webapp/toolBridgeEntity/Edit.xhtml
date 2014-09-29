@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ToolBridgeEntityEditDlg" widgetVar="ToolBridgeEntityEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditToolBridgeEntityTitle}">
+            <h:form id="ToolBridgeEntityEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{toolBridgeEntityController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditToolBridgeEntityLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{toolBridgeEntityController.selected.id}" title="#{bundle.EditToolBridgeEntityTitle_id}" required="true" requiredMessage="#{bundle.EditToolBridgeEntityRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditToolBridgeEntityLabel_ontologyId}" for="ontologyId" />
+                        <p:inputText id="ontologyId" value="#{toolBridgeEntityController.selected.ontologyId}" title="#{bundle.EditToolBridgeEntityTitle_ontologyId}" required="true" requiredMessage="#{bundle.EditToolBridgeEntityRequiredMessage_ontologyId}"/>
+                        <p:outputLabel value="#{bundle.EditToolBridgeEntityLabel_toolId}" for="toolId" />
+                        <p:selectOneMenu id="toolId" value="#{toolBridgeEntityController.selected.toolId}" required="true" requiredMessage="#{bundle.EditToolBridgeEntityRequiredMessage_toolId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{toolBetsEntityController.itemsAvailableSelectOne}"
+                                           var="toolIdItem"
+                                           itemValue="#{toolIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{toolBridgeEntityController.update}" value="#{bundle.Save}" update="display,:ToolBridgeEntityListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ToolBridgeEntityEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ToolBridgeEntityEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

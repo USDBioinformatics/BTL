@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ToolBetsEntityEditDlg" widgetVar="ToolBetsEntityEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditToolBetsEntityTitle}">
+            <h:form id="ToolBetsEntityEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{toolBetsEntityController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditToolBetsEntityLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{toolBetsEntityController.selected.id}" title="#{bundle.EditToolBetsEntityTitle_id}" required="true" requiredMessage="#{bundle.EditToolBetsEntityRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditToolBetsEntityLabel_name}" for="name" />
+                        <p:inputText id="name" value="#{toolBetsEntityController.selected.name}" title="#{bundle.EditToolBetsEntityTitle_name}" required="true" requiredMessage="#{bundle.EditToolBetsEntityRequiredMessage_name}"/>
+                        <p:outputLabel value="#{bundle.EditToolBetsEntityLabel_version}" for="version" />
+                        <p:inputText id="version" value="#{toolBetsEntityController.selected.version}" title="#{bundle.EditToolBetsEntityTitle_version}" />
+                        <p:outputLabel value="#{bundle.EditToolBetsEntityLabel_summary}" for="summary" />
+                        <p:inputText id="summary" value="#{toolBetsEntityController.selected.summary}" title="#{bundle.EditToolBetsEntityTitle_summary}" />
+                        <p:outputLabel value="#{bundle.EditToolBetsEntityLabel_bets}" for="bets" />
+                        <p:inputTextarea rows="4" cols="30" id="bets" value="#{toolBetsEntityController.selected.bets}" title="#{bundle.EditToolBetsEntityTitle_bets}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{toolBetsEntityController.update}" value="#{bundle.Save}" update="display,:ToolBetsEntityListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ToolBetsEntityEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ToolBetsEntityEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

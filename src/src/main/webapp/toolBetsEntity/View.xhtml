@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ToolBetsEntityViewDlg" widgetVar="ToolBetsEntityViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewToolBetsEntityTitle}">
+            <h:form id="ToolBetsEntityViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{toolBetsEntityController.selected != null}">
+                        <h:outputText value="#{bundle.ViewToolBetsEntityLabel_id}"/>
+                        <h:outputText value="#{toolBetsEntityController.selected.id}" title="#{bundle.ViewToolBetsEntityTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewToolBetsEntityLabel_name}"/>
+                        <h:outputText value="#{toolBetsEntityController.selected.name}" title="#{bundle.ViewToolBetsEntityTitle_name}"/>
+                        <h:outputText value="#{bundle.ViewToolBetsEntityLabel_version}"/>
+                        <h:outputText value="#{toolBetsEntityController.selected.version}" title="#{bundle.ViewToolBetsEntityTitle_version}"/>
+                        <h:outputText value="#{bundle.ViewToolBetsEntityLabel_summary}"/>
+                        <h:outputText value="#{toolBetsEntityController.selected.summary}" title="#{bundle.ViewToolBetsEntityTitle_summary}"/>
+                        <h:outputText value="#{bundle.ViewToolBetsEntityLabel_bets}"/>
+                        <h:outputText value="#{toolBetsEntityController.selected.bets}" title="#{bundle.ViewToolBetsEntityTitle_bets}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ToolBetsEntityViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

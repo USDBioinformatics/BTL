@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ToolBridgeEntityViewDlg" widgetVar="ToolBridgeEntityViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewToolBridgeEntityTitle}">
+            <h:form id="ToolBridgeEntityViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{toolBridgeEntityController.selected != null}">
+                        <h:outputText value="#{bundle.ViewToolBridgeEntityLabel_id}"/>
+                        <h:outputText value="#{toolBridgeEntityController.selected.id}" title="#{bundle.ViewToolBridgeEntityTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewToolBridgeEntityLabel_ontologyId}"/>
+                        <h:outputText value="#{toolBridgeEntityController.selected.ontologyId}" title="#{bundle.ViewToolBridgeEntityTitle_ontologyId}"/>
+                        <h:outputText value="#{bundle.ViewToolBridgeEntityLabel_toolId}"/>
+                        <h:outputText value="#{toolBridgeEntityController.selected.toolId}" title="#{bundle.ViewToolBridgeEntityTitle_toolId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ToolBridgeEntityViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

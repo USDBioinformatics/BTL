@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>BTL-DnD</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <!-- jQuery -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+    </head>
+
+    <body>
+        <div id="inputSelect" class="col-md-12" >
+        <input type="file" id="files" name="file" /> Read bytes: 
+        <span class="readBytesButtons">
+            <button data-startbyte="0" data-endbyte="4">1-5</button>
+            <button data-startbyte="5" data-endbyte="14">6-15</button>
+            <button data-startbyte="6" data-endbyte="7">7-8</button>
+            <button>entire file</button>
+        </span>
+        <div id="byte_range"></div>
+        <div id="byte_content"></div>
+    </div>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/dndJS.js"></script>
+
+</body>
+</html>

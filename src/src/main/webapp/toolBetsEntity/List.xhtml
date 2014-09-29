@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListToolBetsEntityTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="ToolBetsEntityListForm">
+                <p:panel header="#{bundle.ListToolBetsEntityTitle}">
+                    <p:dataTable id="datalist" value="#{toolBetsEntityController.items}" var="item"
+                                 selectionMode="single" selection="#{toolBetsEntityController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListToolBetsEntityTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListToolBetsEntityTitle_name}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.name}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListToolBetsEntityTitle_version}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.version}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListToolBetsEntityTitle_summary}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.summary}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListToolBetsEntityTitle_bets}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.bets}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{toolBetsEntityController.prepareCreate}" update=":ToolBetsEntityCreateForm" oncomplete="PF('ToolBetsEntityCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":ToolBetsEntityViewForm" oncomplete="PF('ToolBetsEntityViewDialog').show()" disabled="#{empty toolBetsEntityController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":ToolBetsEntityEditForm" oncomplete="PF('ToolBetsEntityEditDialog').show()" disabled="#{empty toolBetsEntityController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{toolBetsEntityController.destroy}" update=":growl,datalist" disabled="#{empty toolBetsEntityController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+
+                <p:panel>
+                    <p:commandButton value="Create BETS!" actionListener="#{testRunController.makeTestToolBets}"  styleClass="ui-priority-primary" />
+
+                    <h:panelGrid columns="1" cellpadding="5">
+                        <h:outputLabel  value="BET Byte[] to String" style="font-weight:bold" />
+                        <h:outputText id="betsDisplay" value="#{testRunController.betsArrayString}" />
+                    </h:panelGrid>
+                    <p:commandButton value="Update BETS" actionListener="#{testRunController.readBets}" update="betsDisplay" styleClass="ui-priority-primary" />
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

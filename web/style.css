@@ -1,0 +1,77 @@
+body{
+    background-color:#000;
+}
+
+.whiteBG{
+    background-color:#fff;
+}
+
+.inputRow{
+    background-color: #666666;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+#inputSelect{
+    color:#fff;
+    background-color:#666666;
+    margin-top:10px;
+    padding:10px;
+    border:3px #fff solid;
+}
+
+#inputSelect li{
+    color:#ff0;
+}
+
+#inputSelect button{
+    color:black;
+}
+
+#byte_content {
+    margin: 5px 0;
+    max-height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+#byte_range { margin-top: 5px; }
+
+
+
+.bin {
+  min-height: 175px;
+  width:100%;
+  margin:0 auto;
+  border: 2px dashed red;
+  padding: 5px;
+}
+
+.listItem {
+  min-height: 50px;
+  min-width: 150px;
+  background: blue;
+  color:#fff;
+  margin:5px;
+  padding:3px;
+  border: 3px white solid;
+  list-style-type: none;
+}
+
+.drag {
+  opacity: 0.5;
+}
+.over {
+  background: red;
+}
+
+h1,h2,h3{
+    color:white;
+}
+
+#outputPanel{
+    color: white;
+}
+
+.list-group{
+    color:#000;
+}
