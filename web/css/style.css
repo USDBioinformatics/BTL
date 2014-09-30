@@ -20,6 +20,10 @@ body{
     border:3px #fff solid;
 }
 
+.border{
+    border: 3px #fff solid;
+}
+
 #inputSelect li{
     color:#ff0;
 }

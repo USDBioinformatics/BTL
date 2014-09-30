@@ -52,25 +52,28 @@
         <div class="container-fluid">
 
             <!-- Top Input File -->
-            <div class="row inputRow">
-                <div id="inputSelect" class="col-md-12">
-                    <h4>Input</h4>
-                    <input type="file" id="files" name="file" /> Read bytes: 
-                    <span class="readBytesButtons">
-                        <button data-startbyte="0" data-endbyte="4">1-5</button>
-                        <button data-startbyte="5" data-endbyte="14">6-15</button>
-                        <button data-startbyte="6" data-endbyte="7">7-8</button>
-                        <button>Show Entire File</button>
-                    </span>
-                    <div id="byte_range"></div>
-                    <div id="byte_content"></div>
-                </div>
-            </div> <!-- END ROW -->
+            <!--            <div class="row inputRow">
+                            <div id="inputSelect" class="col-md-12">
+                                <h4>Input</h4>
+                                <input type="file" id="files" name="file" /> Read bytes: 
+                                <span class="readBytesButtons">
+                                    <button data-startbyte="0" data-endbyte="4">1-5</button>
+                                    <button data-startbyte="5" data-endbyte="14">6-15</button>
+                                    <button data-startbyte="6" data-endbyte="7">7-8</button>
+                                    <button>Show Entire File</button>
+                                </span>
+                                <div id="byte_range"></div>
+                                <div id="byte_content"></div>
+                            </div>
+                        </div>  END ROW -->
 
             <div class="row" ng-controller="ToolTreeController">
-                <div class="col-md-6">
-                    <div class="col-md-6">
+                <div class="col-md-12">
+                    <div class="col-md-3 border">
                         <h3>Tool Tree</h3>
+                        <input type="text" ng-model="nameFilter" placeholder="Search..."/>
+                        
+                        <p>sort</p>
                         <!--
                           [TREE attribute]
                           angular-treeview: the treeview directive
@@ -84,84 +87,70 @@
                             data-tree-model="treeList"
                             data-node-id="id"
                             data-node-label="roleName"
-                            data-node-children="children" >
+                            data-node-children="children" 
+                            >
                         </div>
-                    </div>
+                    </div> <!-- END TREE LIST -->
 
-                    <div class="col-md-6" ng-controller="ToolTreeController">
-
-                        <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
-                            <ul>
-                                <li>Selected Node: {{currentNode.roleName}}</li>
-                                <li>Node ID: {{currentNode.id}}</li>
-                                <li># of Children: {{currentNode.children.length}}</li>
-                                
-                                <li ng-repeat="child in currentNode.children">Child Name: {{child.roleName}}</li>
-                                
-                            </ul>
+                    <div class="col-md-6">
+                        <div class="col-md-12">
+                            <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
+                                <ul>
+                                    <li>Selected Node: {{currentNode.roleName}}</li>
+                                    <li>Node ID: {{currentNode.id}}</li>
+                                    <li># of Children: {{currentNode.children.length}}</li>
+                                    <li ng-repeat="child in currentNode.children">Child Name: {{child.roleName}}</li>
+                                    <div  draggable id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
+                                        Use Tool </div>
+                                </ul>
+                            </div>
                         </div>
-                        <ul ng-repeat="node in treeList">
-                            <li ng-repeat="(key, val) in node">{{key}}: {{val}}</li>
-                        </ul>
-                    </div>
-                </div><!-- END LEFT col-md-6 -->
+                        <!--                        <ul ng-repeat="node in treeList">
+                                                    <li ng-repeat="(key, val) in node">{{key}}: {{val}}</li>
+                                                </ul>-->
+                    </div> <!-- END TOOL DATA COlUMN -->
 
-                <div class="col-md-3" ng-controller="ToolListController">
-                    <h3>Drop Bin</h3>
-                    <div class="bin" droppable drop="handleDrop()">
-                    </div>
 
-                    <div class="col-md-12" >
+                    <div  class="col-md-3">
+                        <div class="col-md-12 border">
+                            <h3>Data Tree</h3>
+                            <p>search</p>
+                            <p>sort</p>
+                            <!--
+                              [TREE attribute]
+                              angular-treeview: the treeview directive
+                              tree-model : the tree model on $scope.
+                              node-id : each node's id
+                              node-label : each node's label
+                              node-children: each node's children
+                            -->
+                            <div
+                                data-angular-treeview="true"
+                                data-tree-model="treeList"
+                                data-node-id="id"
+                                data-node-label="roleName"
+                                data-node-children="children" 
+                                >
+                            </div>
+
+                        </div>
+                    </div> <!-- END DATA TREE COLUMN -->
+                </div> <!-- End row col-12 -->
+            </div> <!-- END TOP ROW -->
+
+
+
+            <!-- WORKFLOW ROW -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-12" ng-controller="ToolListController">
+                        <h3>Workflow / Test Tools</h3>
+                        <div class="bin" droppable drop="handleDrop()"> </div>
                         <div class="col-md-6" id="outputPanel">
 
                         </div>
-                        <div class="clearfix"></div>
-                        <input ng-model="toolVal.version"  type="text"/>
-                        <h5 ng-bind="toolVal.version"> </h5>
-                        <p ng-bind="toolData.description"></p>
-
-                        <h4 ng-bind="Tool.ToolDescription"></h4>
-                    </div>
-
-
-                    <!--                    <div class="col-md-12" ng-controller="ReportingController">
-                                            <h1>Tool ID = {{tools.tools[0].toolId}}</h1>
-                                            <h1>Name = {{tools.tools[0].toolName}}</h1>
-                                            <h1>Description = {{tools.tools[0].toolDescription}}</h1>
-                                            <h1>Domain = {{tools.tools[0].domains[0].domainName}}</h1>
-                                            <h1>Domain URI = {{tools.tools[0].domains[0].domainURI}}</h1>
-                                            <h1>Application = {{tools.tools[0].applications[0].appName}}</h1>
-                                            <h1>Application URI = {{tools.tools[0].applications[0].appURI}}</h1>                        
-                    
-                                            <ul>
-                                                <li ng-repeat="tool in tools">
-                                                    {{tools.toolName}}
-                                                </li>
-                                            </ul>
-                                        </div>-->
-                </div> <!-- END DROP BIN COLUMN -->
-
-
-                <div  class="col-md-3" ng-controller="ToolListController">
-
-                    <ul class="list-group">
-                        <li class="list-group-item">
-                            <h4>{{toolData.name}}</h4>
-                            <p> <strong>Version:</strong> {{toolData.version| number}} </p>
-                            <p> <strong>Description:</strong> {{toolData.summary}} </p>
-                            <section>
-                                <ul class="nav nav-pills">
-                                    <li> <a href ng-click="tab = 1">Description</a> </li>
-                                    <li> <a href ng-click="tab = 2">Specification</a>  </li>
-                                    <li> <a href ng-click="tab = 3">Reporting</a>  </li>
-                                </ul>
-                                {{tab}}
-                                {{toolData.description}}
-                            </section>
-                        </li> 
-                    </ul>
-                </div>
-            </div> <!-- END ROW -->
-        </div> <!-- END ROW -->
+                    </div> <!-- END DROP BIN COLUMN -->
+                </div> <!-- END WORKFLOW col-md-12 -->
+            </div> <!-- END WORKFLOW ROW -->
     </body>
 </html>
