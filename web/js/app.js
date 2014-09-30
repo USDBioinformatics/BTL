@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('BTL', ['angularTreeview']);
+    var app = angular.module('BTL', ['angularTreeview','angucomplete']);
     app.directive('draggable', function () {
         return function (scope, element) {
             // this gives us the native JS object
