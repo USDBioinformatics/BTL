@@ -5,11 +5,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <!-- link for CSS when using the tree as a Dom element -->
-        <link rel="stylesheet" type="text/css" href="css/tree-control.css">
-         <link rel="stylesheet" type="text/css" href="css/treeview.css">
-
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/treeview.css">
 
         <!-- jQuery -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -20,7 +17,6 @@
         <!-- INCLUDED JS -->
         <script type="text/javascript" src="js/app.js"></script>
         <script type="text/javascript" src="js/dndJS.js"></script>
-        <script type="text/javascript" src="js/angular-tree-control.js"></script>
         <script type="text/javascript" src="js/treeview.js"></script>
     </head>
 
@@ -54,6 +50,8 @@
         </nav>
 
         <div class="container-fluid">
+
+            <!-- Top Input File -->
             <div class="row inputRow">
                 <div id="inputSelect" class="col-md-12">
                     <h4>Input</h4>
@@ -62,7 +60,7 @@
                         <button data-startbyte="0" data-endbyte="4">1-5</button>
                         <button data-startbyte="5" data-endbyte="14">6-15</button>
                         <button data-startbyte="6" data-endbyte="7">7-8</button>
-                        <button>entire file</button>
+                        <button>Show Entire File</button>
                     </span>
                     <div id="byte_range"></div>
                     <div id="byte_content"></div>
@@ -70,31 +68,45 @@
             </div> <!-- END ROW -->
 
             <div class="row" ng-controller="ToolTreeController">
-                <div class="col-md-3">
-                    <h3>Tool List</h3>
-                    <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
-                        <span><b>Selected Node</b> : {{currentNode.roleName}}</span>
+                <div class="col-md-6">
+                    <div class="col-md-6">
+                        <h3>Tool Tree</h3>
+                        <!--
+                          [TREE attribute]
+                          angular-treeview: the treeview directive
+                          tree-model : the tree model on $scope.
+                          node-id : each node's id
+                          node-label : each node's label
+                          node-children: each node's children
+                        -->
+                        <div
+                            data-angular-treeview="true"
+                            data-tree-model="treeList"
+                            data-node-id="id"
+                            data-node-label="roleName"
+                            data-node-children="children" >
+                        </div>
                     </div>
 
-                    <!--
-                      [TREE attribute]
-                      angular-treeview: the treeview directive
-                      tree-model : the tree model on $scope.
-                      node-id : each node's id
-                      node-label : each node's label
-                      node-children: each node's children
-                    -->
-                    <div
-                        data-angular-treeview="true"
-                        data-tree-model="roleList"
-                        data-node-id="roleId"
-                        data-node-label="roleName"
-                        data-node-children="children" >
+                    <div class="col-md-6" ng-controller="ToolTreeController">
+
+                        <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
+                            <ul>
+                                <li>Selected Node: {{currentNode.roleName}}</li>
+                                <li>Node ID: {{currentNode.id}}</li>
+                                <li># of Children: {{currentNode.children.length}}</li>
+                                
+                                <li ng-repeat="child in currentNode.children">Child Name: {{child.roleName}}</li>
+                                
+                            </ul>
+                        </div>
+                        <ul ng-repeat="node in treeList">
+                            <li ng-repeat="(key, val) in node">{{key}}: {{val}}</li>
+                        </ul>
                     </div>
+                </div><!-- END LEFT col-md-6 -->
 
-                </div>
-
-                <div class="col-md-6" ng-controller="ToolListController">
+                <div class="col-md-3" ng-controller="ToolListController">
                     <h3>Drop Bin</h3>
                     <div class="bin" droppable drop="handleDrop()">
                     </div>
@@ -112,21 +124,21 @@
                     </div>
 
 
-                    <div class="col-md-12" ng-controller="ReportingController">
-                        <h1>Tool ID = {{tools.tools[0].toolId}}</h1>
-                        <h1>Name = {{tools.tools[0].toolName}}</h1>
-                        <h1>Description = {{tools.tools[0].toolDescription}}</h1>
-                        <h1>Domain = {{tools.tools[0].domains[0].domainName}}</h1>
-                        <h1>Domain URI = {{tools.tools[0].domains[0].domainURI}}</h1>
-                        <h1>Application = {{tools.tools[0].applications[0].appName}}</h1>
-                        <h1>Application URI = {{tools.tools[0].applications[0].appURI}}</h1>                        
-
-                        <ul>
-                            <li ng-repeat="tool in tools">
-                                {{tools.toolName}}
-                            </li>
-                        </ul>
-                    </div>
+                    <!--                    <div class="col-md-12" ng-controller="ReportingController">
+                                            <h1>Tool ID = {{tools.tools[0].toolId}}</h1>
+                                            <h1>Name = {{tools.tools[0].toolName}}</h1>
+                                            <h1>Description = {{tools.tools[0].toolDescription}}</h1>
+                                            <h1>Domain = {{tools.tools[0].domains[0].domainName}}</h1>
+                                            <h1>Domain URI = {{tools.tools[0].domains[0].domainURI}}</h1>
+                                            <h1>Application = {{tools.tools[0].applications[0].appName}}</h1>
+                                            <h1>Application URI = {{tools.tools[0].applications[0].appURI}}</h1>                        
+                    
+                                            <ul>
+                                                <li ng-repeat="tool in tools">
+                                                    {{tools.toolName}}
+                                                </li>
+                                            </ul>
+                                        </div>-->
                 </div> <!-- END DROP BIN COLUMN -->
 
 

@@ -119,31 +119,107 @@
     app.controller('ToolTreeController', function($scope) {
 
         //test tree data
-        $scope.roleList = [
-            {"roleName": "Applications", "roleId": "role1", "children": [
-                    {"roleName": "subApplication", "roleId": "role11", "collapsed": true, "children": []},
-                    {"roleName": "subApplication2", "roleId": "role12", "collapsed": true, "children": [
-                            {"roleName": "subApplication2-1", "roleId": "role121", "children": [
-                                    {"roleName": "subApplication2-1-1", "roleId": "role1211", "children": []},
-                                    {"roleName": "subApplication2-1-2", "roleId": "role1212", "children": []}
+        $scope.treeList = [
+            {"roleName": "Applications", "id": "role1", "children": [
+                    {"roleName": "subApplication", "id": "role11", "collapsed": true, "children": [
+                            {
+                                "roleName": "Test Tool 1",
+                                "id": 001,
+                                "toolName": "Test Tool 1",
+                                "toolDescription": "Test tool 1 description",
+                                "domains": [
+                                    {
+                                        "domainName": "Tool 1 Domain Name",
+                                        "domainURI": "http://domain.uri1"
+                                    }
+                                ],
+                                "applications": [
+                                    {
+                                        "appName": "Tool 1 Application Name",
+                                        "appURI": "http://app.uri1"
+                                    }
+                                ]
+                            },
+                            {
+                                "roleName": "Test Tool 2",
+                                "id": 002,
+                                "toolName": "Test Tool 2",
+                                "toolDescription": "Test tool 2 description",
+                                "domains": [
+                                    {
+                                        "domainName": "Tool 2 Domain Name",
+                                        "domainURI": "http://domain.uri2"
+                                    }
+                                ],
+                                "applications": [
+                                    {
+                                        "appName": "Tool 2 Application Name",
+                                        "appURI": "http://app.uri2"
+                                    }
+                                ]
+                            }
+                        ]},
+                    {"roleName": "subApplication2", "id": "role12", "collapsed": true, "children": [
+                            {"roleName": "subApplication2-1", "id": "role121", "children": [
+                                    {"roleName": "subApplication2-1-1", "id": "role1211", "children": []},
+                                    {"roleName": "subApplication2-1-2", "id": "role1212", "children": [
+                                             {"roleName": "subApplication2-1-2-1", "id": "role1211", "children": [
+                                                      {"roleName": "subApplication2-1-1", "id": "role1211", "children": []}
+                                             ]},
+                                             {"roleName": "subApplication2-1-2-2", "id": "role1211", "children": []}
+                                    ]}
                                 ]}
                         ]}
                 ]},
-            {"roleName": "Domains", "roleId": "role2", "children": [
-                    {"roleName": "subDomain1", "roleId": "role11", "collapsed": true, "children": []},
-                    {"roleName": "subDomain2", "roleId": "role12", "children": [
-                            {"roleName": "subDomain2-1", "roleId": "role121", "children": [
-                                    {"roleName": "subDomain2-1-1", "roleId": "role1211", "children": []},
-                                    {"roleName": "subDomain2-1-2", "roleId": "role1212", "children": []}
+            {"roleName": "Domains", "id": "role2", "children": [
+                    {"roleName": "subDomain1", "id": "role11", "collapsed": true, "children": []},
+                    {"roleName": "subDomain2", "id": "role12", "children": [
+                            {"roleName": "subDomain2-1", "id": "role121", "children": [
+                                    {"roleName": "subDomain2-1-1", "id": "role1211", "children": []},
+                                    {"roleName": "subDomain2-1-2", "id": "role1212", "children": []}
                                 ]}
                         ]}
                 ]},
-            {"roleName": "Other", "roleId": "role3", "children": [
-                    {"roleName": "subGuest1", "roleId": "role11", "children": []},
-                    {"roleName": "subGuest2", "roleId": "role12", "collapsed": true, "children": [
-                            {"roleName": "subGuest2-1", "roleId": "role121", "children": [
-                                    {"roleName": "subGuest2-1-1", "roleId": "role1211", "children": []},
-                                    {"roleName": "subGuest2-1-2", "roleId": "role1212", "children": []}
+            {"roleName": "Other", "id": "role3", "children": [
+                    {"roleName": "subGuest1", "id": "role11", "children": []},
+                    {"roleName": "subGuest2", "id": "role12", "collapsed": true, "children": [
+                            {"roleName": "subGuest2-1", "id": "role121", "children": [
+                                    {
+                                "roleName": "Test Tool 1",
+                                "id": 001,
+                                "toolName": "Test Tool 1",
+                                "toolDescription": "Test tool 1 description",
+                                "domains": [
+                                    {
+                                        "domainName": "Tool 1 Domain Name",
+                                        "domainURI": "http://domain.uri1"
+                                    }
+                                ],
+                                "applications": [
+                                    {
+                                        "appName": "Tool 1 Application Name",
+                                        "appURI": "http://app.uri1"
+                                    }
+                                ]
+                            },
+                            {
+                                "roleName": "Test Tool 2",
+                                "id": 002,
+                                "toolName": "Test Tool 2",
+                                "toolDescription": "Test tool 2 description",
+                                "domains": [
+                                    {
+                                        "domainName": "Tool 2 Domain Name",
+                                        "domainURI": "http://domain.uri2"
+                                    }
+                                ],
+                                "applications": [
+                                    {
+                                        "appName": "Tool 2 Application Name",
+                                        "appURI": "http://app.uri2"
+                                    }
+                                ]
+                            }
                                 ]}
                         ]}
                 ]}
