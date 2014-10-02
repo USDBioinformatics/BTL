@@ -105,7 +105,7 @@
                                     <li>Node ID: {{currentNode.id}}</li>
                                     <li># of Children: {{currentNode.children.length}}</li>
                                     <li ng-repeat="child in currentNode.children">Child Name: {{child.roleName}}</li>
-                                    <div  draggable id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
+                                    <div  draggable ng-show="child>0" id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
                                         Use Tool </div>
                                 </ul>
                             </div>
