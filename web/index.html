@@ -52,6 +52,10 @@
 
         <div class="container-fluid">
 
+            <div class="row">
+                <div class="col-md-12">Similar tools</div>
+            </div>
+
             <!-- Top Input File -->
             <!--            <div class="row inputRow">
                             <div id="inputSelect" class="col-md-12">
@@ -73,7 +77,7 @@
                     <div class="col-md-3 border">
                         <h3>Tool Tree</h3>
                         <input type="text" ng-model="nameFilter" placeholder="Search..."/>
-                        
+
                         <p>sort</p>
                         <!--
                           [TREE attribute]
@@ -94,7 +98,7 @@
                     </div> <!-- END TREE LIST -->
 
                     <div class="col-md-6">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
                                 <ul>
                                     <li>Selected Node: {{currentNode.roleName}}</li>
@@ -105,6 +109,12 @@
                                         Use Tool </div>
                                 </ul>
                             </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="col-md-12">Data Set
+                                <div class="bin" droppable drop="handleDrop()"> </div></div>
+                            <div class="col-md-12">Parameters </div>
                         </div>
                         <!--                        <ul ng-repeat="node in treeList">
                                                     <li ng-repeat="(key, val) in node">{{key}}: {{val}}</li>
@@ -139,19 +149,17 @@
                 </div> <!-- End row col-12 -->
             </div> <!-- END TOP ROW -->
 
-
-
             <!-- WORKFLOW ROW -->
             <div class="row">
                 <div class="col-md-12">
-                    <div class="col-md-12" ng-controller="ToolListController">
-                        <h3>Workflow / Test Tools</h3>
-                        <div class="bin" droppable drop="handleDrop()"> </div>
-                        <div class="col-md-6" id="outputPanel">
-
-                        </div>
-                    </div> <!-- END DROP BIN COLUMN -->
-                </div> <!-- END WORKFLOW col-md-12 -->
-            </div> <!-- END WORKFLOW ROW -->
+                    <h3>Prev/Next</h3>
+                    <div class="col-md-6">
+                        <h1>Previous Tools</h1>
+                    </div>
+                    <div class="col-md-6">
+                        <h1>Next Tools</h1>
+                    </div>
+                </div> <!-- END DROP BIN COLUMN -->
+            </div> <!-- END WORKFLOW col-md-12 -->
     </body>
 </html>

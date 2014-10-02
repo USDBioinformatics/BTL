@@ -185,7 +185,7 @@
                                 ]}
                         ]}
                 ]},
-            {"roleName": "Other", "id": "role3", "children": [
+            {"roleName": "Methods", "id": "role3", "children": [
                     {"roleName": "subGuest1", "id": "role11", "children": []},
                     {"roleName": "subGuest2", "id": "role12", "collapsed": true, "children": [
                             {"roleName": "subGuest2-1", "id": "role121", "children": [
