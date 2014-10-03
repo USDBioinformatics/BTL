@@ -123,6 +123,12 @@
         });
     });
 
+    app.controller('ToolDataController', function($scope, TreeListService) {
+        TreeListService.success(function(data) {
+            $scope.toolData = data;
+        });
+    });
+
     app.controller('DataTreeController', function($scope, $http) {
         $http.get("./input_files/dataTree.json")
                 .success(function(response) {
