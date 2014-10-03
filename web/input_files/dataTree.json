@@ -1,79 +1,102 @@
 [
-    {
-        "roleName": "Applications",
+{
+"roleName": "Data",
         "id": "role1",
         "children": [
-            {
-                "roleName": "Analysis and Processing",
+        {
+        "roleName": "Core data",
                 "id": "role11",
                 "collapsed": true,
                 "children": [
-                    {
-                        "roleName": "Alignment Processing",
+                {
+                "roleName": "Alignment",
                         "id": "http://edamontology.org/operation_2951",
                         "children": [
-                            {
-                                "roleName": "Test Tool 1",
+                        {
+                        "roleName": "Protein Alignment",
                                 "id": "001",
                                 "toolName": "Test Tool 1",
-                                "toolDescription": "Test tool 1 description"
-                            }
-                        ]
-                    },
-                    {
-                        "roleName": "File Processing",
-                        "id": "http://edamontology.org/operation_2409",
-                        "children": [
-                            {
-                                "roleName": "Test Tool 1",
+                                "toolDescription": "Test tool 1 description",
+                                "children" : [
+                                    {
+                                        "roleName" : "Protein Alignment Sub"
+                                    }
+                                ]
+                        },
+                        {
+                                "roleName": "Secondary Structure Alignment",
                                 "id": "002",
                                 "toolName": "Test Tool 1",
                                 "toolDescription": "Test tool 1 description"
-                            }
+                        },
+                        {
+                                "roleName": "Sequence profile alignment",
+                                "id": "003",
+                                "toolName": "Test Tool 1",
+                                "toolDescription": "Test tool 1 description"
+                        },
+                        {
+                                "roleName": "Sequence structure alignment",
+                                "id": "004",
+                                "toolName": "Test Tool 1",
+                                "toolDescription": "Test tool 1 description"
+                        }                        
                         ]
-                    }
+                },
+                {
+                "roleName": "Biological Model",
+                        "id": "http://edamontology.org/operation_2409",
+                        "children": [
+                        {
+                        "roleName": "Test Tool 1",
+                                "id": "002",
+                                "toolName": "Test Tool 1",
+                                "toolDescription": "Test tool 1 description"
+                        }
+                        ]
+                }
                 ]
-            },
-            {
-                "roleName": "Annotation",
+        },
+        {
+        "roleName": "Identifier",
                 "id": "role12",
                 "collapsed": true,
                 "children": [
-                    {
-                        "roleName": "Gene expression profile annotation",
+                {
+                "roleName": "Gene expression profile annotation",
                         "id": "role121",
                         "children": [
-                            {
-                                "roleName": "Tool 1",
+                        {
+                        "roleName": "Tool 1",
                                 "id": "role1211",
                                 "children": []
-                            },
-                            {
-                                "roleName": "subApplication2-1-2",
+                        },
+                        {
+                        "roleName": "subApplication2-1-2",
                                 "id": "role1212",
                                 "children": [
-                                    {
-                                        "roleName": "subApplication2-1-2-1",
+                                {
+                                "roleName": "subApplication2-1-2-1",
                                         "id": "role1211",
                                         "children": [
-                                            {
-                                                "roleName": "subApplication2-1-1",
+                                        {
+                                        "roleName": "subApplication2-1-1",
                                                 "id": "role1211",
                                                 "children": []
-                                            }
+                                        }
                                         ]
-                                    },
-                                    {
-                                        "roleName": "subApplication2-1-2-2",
+                                },
+                                {
+                                "roleName": "subApplication2-1-2-2",
                                         "id": "role1211",
                                         "children": []
-                                    }
+                                }
                                 ]
-                            }
+                        }
                         ]
-                    }
+                }
                 ]
-            }
+        }
         ]
-    }
-	]
+}
+]
