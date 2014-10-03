@@ -22,6 +22,7 @@ body{
 
 .border{
     border: 3px #fff solid;
+    min-height:480px;
 }
 
 #inputSelect li{

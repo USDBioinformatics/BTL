@@ -1,0 +1,79 @@
+[
+    {
+        "roleName": "Applications",
+        "id": "role1",
+        "children": [
+            {
+                "roleName": "Analysis and Processing",
+                "id": "role11",
+                "collapsed": true,
+                "children": [
+                    {
+                        "roleName": "Alignment Processing",
+                        "id": "http://edamontology.org/operation_2951",
+                        "children": [
+                            {
+                                "roleName": "Test Tool 1",
+                                "id": "001",
+                                "toolName": "Test Tool 1",
+                                "toolDescription": "Test tool 1 description"
+                            }
+                        ]
+                    },
+                    {
+                        "roleName": "File Processing",
+                        "id": "http://edamontology.org/operation_2409",
+                        "children": [
+                            {
+                                "roleName": "Test Tool 1",
+                                "id": "002",
+                                "toolName": "Test Tool 1",
+                                "toolDescription": "Test tool 1 description"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "roleName": "Annotation",
+                "id": "role12",
+                "collapsed": true,
+                "children": [
+                    {
+                        "roleName": "Gene expression profile annotation",
+                        "id": "role121",
+                        "children": [
+                            {
+                                "roleName": "Tool 1",
+                                "id": "role1211",
+                                "children": []
+                            },
+                            {
+                                "roleName": "subApplication2-1-2",
+                                "id": "role1212",
+                                "children": [
+                                    {
+                                        "roleName": "subApplication2-1-2-1",
+                                        "id": "role1211",
+                                        "children": [
+                                            {
+                                                "roleName": "subApplication2-1-1",
+                                                "id": "role1211",
+                                                "children": []
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "roleName": "subApplication2-1-2-2",
+                                        "id": "role1211",
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+	]

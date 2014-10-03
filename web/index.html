@@ -53,7 +53,20 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-md-12">Similar tools</div>
+                <div class="col-md-12" ng-controller="SimilarToolController">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">
+                                Similar Tools
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <p>{{data.message}}</p>
+                        </div>
+                    </div>
+
+
+                </div>
             </div>
 
             <!-- Top Input File -->
@@ -76,9 +89,8 @@
                 <div class="col-md-12">
                     <div class="col-md-3 border">
                         <h3>Tool Tree</h3>
-                        <input type="text" ng-model="nameFilter" placeholder="Search..."/>
+                        <input type="text" ng-model="search" placeholder="Search..."/>
 
-                        <p>sort</p>
                         <!--
                           [TREE attribute]
                           angular-treeview: the treeview directive
@@ -104,8 +116,8 @@
                                     <li>Selected Node: {{currentNode.roleName}}</li>
                                     <li>Node ID: {{currentNode.id}}</li>
                                     <li># of Children: {{currentNode.children.length}}</li>
-                                    <li ng-repeat="child in currentNode.children">Child Name: {{child.roleName}}</li>
-                                    <div  draggable ng-show="child>0" id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
+                                    <li ng-repeat="child in currentNode.children| filter:search">Child Name: {{child.roleName}}</li>
+                                    <div  draggable ng-show="child > 0" id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
                                         Use Tool </div>
                                 </ul>
                             </div>
@@ -114,7 +126,11 @@
                         <div class="col-md-6">
                             <div class="col-md-12">Data Set
                                 <div class="bin" droppable drop="handleDrop()"> </div></div>
-                            <div class="col-md-12">Parameters </div>
+                            <div class="col-md-12">
+                                <h3>Parameters</h3> 
+                                <input type="text" ng-model="parameter" placeholder="Parameter"/>
+                                <p>{{parameter}}</p>
+                            </div>
                         </div>
                         <!--                        <ul ng-repeat="node in treeList">
                                                     <li ng-repeat="(key, val) in node">{{key}}: {{val}}</li>
@@ -123,10 +139,8 @@
 
 
                     <div  class="col-md-3">
-                        <div class="col-md-12 border">
+                        <div class="col-md-12 border" ng-controller="DataTreeController">
                             <h3>Data Tree</h3>
-                            <p>search</p>
-                            <p>sort</p>
                             <!--
                               [TREE attribute]
                               angular-treeview: the treeview directive
@@ -137,7 +151,7 @@
                             -->
                             <div
                                 data-angular-treeview="true"
-                                data-tree-model="treeList"
+                                data-tree-model="dataTree"
                                 data-node-id="id"
                                 data-node-label="roleName"
                                 data-node-children="children" 
@@ -154,10 +168,28 @@
                 <div class="col-md-12">
                     <h3>Prev/Next</h3>
                     <div class="col-md-6">
-                        <h1>Previous Tools</h1>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    Previous Tools
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                Panel content
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-6">
-                        <h1>Next Tools</h1>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">
+                                    Next Tools
+                                </h3>
+                            </div>
+                            <div class="panel-body">
+                                Panel content
+                            </div>
+                        </div>
                     </div>
                 </div> <!-- END DROP BIN COLUMN -->
             </div> <!-- END WORKFLOW col-md-12 -->
