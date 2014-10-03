@@ -113,11 +113,14 @@
         return {message: "I'm data from a service"}
     });
 
-    app.controller('ToolTreeController', function($scope, $http) {
-        $http.get("./input_files/reporting_file.json")
-                .success(function(response) {
-                    $scope.treeList = response;
-                });
+    app.factory('TreeListService', function($http) {
+        return $http.get("./input_files/reporting_file.json")
+    });
+
+    app.controller('ToolTreeController', function($scope, TreeListService) { //pass Tree factory
+        TreeListService.success(function(data) {
+            $scope.treeList = data;
+        });
     });
 
     app.controller('DataTreeController', function($scope, $http) {

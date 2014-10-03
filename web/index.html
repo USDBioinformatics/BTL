@@ -85,9 +85,9 @@
                             </div>
                         </div>  END ROW -->
 
-            <div class="row" ng-controller="ToolTreeController">
+            <div class="row">
                 <div class="col-md-12">
-                    <div class="col-md-3 border">
+                    <div class="col-md-3 border" ng-controller="ToolTreeController">
                         <h3>Tool Tree</h3>
                         <input type="text" ng-model="search" placeholder="Search..."/>
 
@@ -107,6 +107,19 @@
                             data-node-children="children" 
                             >
                         </div>
+
+                        <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
+                            <ul>
+                                <li>Selected Node: {{currentNode.roleName}}</li>
+                                <li>Node ID: {{currentNode.id}}</li>
+                                <li># of Children: {{currentNode.children.length}}</li>
+                                <li ng-repeat="child in currentNode.children| filter:search">Child Name: {{child.roleName}}  Input: {{ child.inputs[0].inputName}}</li>
+                                <li>Input Format: {{currentNode.inputs[0].format}}</li>
+                                <li>Output Format: {{currentNode.outputs[0].format}}</li>
+                                <div  draggable ng-show="children" id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
+                                    Use Tool </div>
+                            </ul>
+                        </div>
                     </div> <!-- END TREE LIST -->
 
                     <div class="col-md-6">
@@ -116,10 +129,12 @@
                                     <li>Selected Node: {{currentNode.roleName}}</li>
                                     <li>Node ID: {{currentNode.id}}</li>
                                     <li># of Children: {{currentNode.children.length}}</li>
-                                    <li ng-repeat="child in currentNode.children| filter:search">Child Name: {{child.roleName}}</li>
-                                    <div  draggable ng-show="child > 0" id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
+                                    <li ng-repeat="child in currentNode.children| filter:search">Child Name: {{child.roleName}}  Input: {{ child.inputs[0].inputName}}</li>
+
+                                    <div  draggable ng-show="children" id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
                                         Use Tool </div>
                                 </ul>
+                                <p>{{json}}</p>
                             </div>
                         </div>
 

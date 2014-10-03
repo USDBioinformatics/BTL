@@ -11,13 +11,26 @@
                     {
                         "roleName": "Alignment Processing",
                         "id": "http://edamontology.org/operation_2951",
+						"tool" : true,
                         "children": [
                             {
                                 "roleName": "Test Tool 1",
                                 "id": "001",
                                 "toolName": "Test Tool 1",
-                                "toolDescription": "Test tool 1 description"
-                            }
+                                "toolDescription": "Test tool 1 description",
+								"inputs" : [
+									{ 
+										"inputName" : "Test Input 1",
+										"format" : ".txt"
+									}
+								],
+								"outputs" : [
+									{
+										"outputName" : "Test Output 1",
+										"format" : "fasta"
+									}
+								]
+							}
                         ]
                     },
                     {
