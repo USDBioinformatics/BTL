@@ -143,7 +143,6 @@
 
 
 
-
 //    app.controller('ToolListController', function($scope, $http) {
 //        $scope.toolVal = {version: '1.0'};
 //        getBets($scope, $http);

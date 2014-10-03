@@ -126,7 +126,7 @@
                         <div class="col-md-6" ng-controller="ToolDataController">
                             <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
                                 <ul>
-                                    <li>Selected Node: {{toolData.roleName}}</li>
+                                    <li>Selected Node: {{toolData[0].roleName}}</li>
                                     <li>Node ID: {{currentNode.id}}</li>
                                     <li># of Children: {{currentNode.children.length}}</li>
                                     <li ng-repeat="child in currentNode.children| filter:search">Child Name: {{child.roleName}}  Input: {{ child.inputs[0].inputName}}</li>
