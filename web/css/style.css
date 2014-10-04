@@ -80,3 +80,31 @@ h1,h2,h3{
 .list-group{
     color:#000;
 }
+
+#similarToolsContainer{
+    
+}
+
+#similarToolsContainer ul
+{
+margin: 0;
+padding: 0;
+list-style-type: none;
+text-align: center;
+}
+
+#similarToolsContainer ul li { display: inline; }
+
+#similarToolsContainer ul li a
+{
+text-decoration: none;
+padding: .2em 1em;
+color: #fff;
+background-color: #036;
+}
+
+#similarToolsContainer ul li a:hover
+{
+color: #fff;
+background-color: #369;
+}

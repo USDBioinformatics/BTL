@@ -7,18 +7,6 @@
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <link rel="stylesheet" type="text/css" href="css/treeview.css">
-
-        <!-- jQuery -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script> 
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <!-- Angular -->
-        <script type="text/javascript" src="angular/angular.js"></script>
-        <!-- INCLUDED JS -->
-        <script type="text/javascript" src="js/app.js"></script>
-        <script type="text/javascript" src="js/dndJS.js"></script>
-        <script type="text/javascript" src="js/treeview.js"></script>
-        <script type="text/javascript" src="js/angucomplete.js"></script>
     </head>
 
     <body ng-app="BTL">
@@ -53,21 +41,22 @@
         <div class="container-fluid">
 
             <div class="row">
-                <div class="col-md-12" ng-controller="SimilarToolController">
+                <div class="col-md-12" id="similarToolsContainer" ng-controller="SimilarToolController">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">
-                                Similar Tools
-                            </h3>
+                            <h3 class="panel-title">Similar Tools</h3>
                         </div>
                         <div class="panel-body">
-                            <p>{{data.message}}</p>
+                            <ul>
+                                <li ng-repeat="tool in similarToolList">{{tool.toolId}}
+                                    <img ng-src="{{tool.imageUrl}}">
+                                </li>
+                            </ul>
                         </div>
                     </div>
 
-
-                </div>
-            </div>
+                </div> <!-- END SIMILAR TOOL CONTROLLER -->
+            </div> <!-- END SIMILAR TOOL ROW -->
 
             <!-- Top Input File -->
             <!--            <div class="row inputRow">
@@ -206,5 +195,20 @@
                     </div>
                 </div> <!-- END DROP BIN COLUMN -->
             </div> <!-- END WORKFLOW col-md-12 -->
+
+
+
+            <!-- jQuery -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script> 
+            <script src="bootstrap/js/bootstrap.min.js"></script>
+            <!-- Angular -->
+            <script type="text/javascript" src="angular/angular.js"></script>
+            <!-- INCLUDED JS -->
+            <script type="text/javascript" src="js/app.js"></script>
+            <script type="text/javascript" src="js/treeview.js"></script>
+            <script type="text/javascript" src="js/services.js"></script>
+            <script type="text/javascript" src="js/controllers.js"></script>
+            <script type="text/javascript" src="js/directives.js"></script>
     </body>
 </html>
