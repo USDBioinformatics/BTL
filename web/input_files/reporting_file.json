@@ -11,32 +11,27 @@
                     {
                         "roleName": "Alignment Processing",
                         "id": "http://edamontology.org/operation_2951",
+						"tool" : true,
                         "children": [
                             {
                                 "roleName": "Test Tool 1",
                                 "id": "001",
-                                "tool" : true,
                                 "toolName": "Test Tool 1",
                                 "toolDescription": "Test tool 1 description",
-                                "inputs": [
-                                    {
-                                        "inputName": "Test Input 1",
-                                        "format": ".txt"
-                                    }
-                                ],
-                                "outputs": [
-                                    {
-                                        "outputName": "Test Output 1",
-                                        "format": "fasta"
-                                    }
-                                ],
-                                "parameters" : [
-                                    {
-                                        "parameterName" : "Param Name 1",
-                                        "paramterID" : "p_001"
-                                    }
-                                ]
-                            }
+								"imageUrl" : "../images/wrench.jpg",
+								"inputs" : [
+									{ 
+										"inputName" : "Test Input 1",
+										"format" : ".txt"
+									}
+								],
+								"outputs" : [
+									{
+										"outputName" : "Test Output 1",
+										"format" : "fasta"
+									}
+								]
+							}
                         ]
                     },
                     {
@@ -46,7 +41,6 @@
                             {
                                 "roleName": "Test Tool 1",
                                 "id": "002",
-                                "tool" : true,
                                 "toolName": "Test Tool 1",
                                 "toolDescription": "Test tool 1 description"
                             }

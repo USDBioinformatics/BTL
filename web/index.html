@@ -47,6 +47,7 @@
                             <h3 class="panel-title">Similar Tools</h3>
                         </div>
                         <div class="panel-body">
+                            <h2>ToolId: {{toolId}}</h2>
                             <ul>
                                 <li ng-repeat="tool in similarToolList">{{tool.toolId}}
                                     <img ng-src="{{tool.imageUrl}}">
@@ -58,28 +59,17 @@
                 </div> <!-- END SIMILAR TOOL CONTROLLER -->
             </div> <!-- END SIMILAR TOOL ROW -->
 
-            <!-- Top Input File -->
-            <!--            <div class="row inputRow">
-                            <div id="inputSelect" class="col-md-12">
-                                <h4>Input</h4>
-                                <input type="file" id="files" name="file" /> Read bytes: 
-                                <span class="readBytesButtons">
-                                    <button data-startbyte="0" data-endbyte="4">1-5</button>
-                                    <button data-startbyte="5" data-endbyte="14">6-15</button>
-                                    <button data-startbyte="6" data-endbyte="7">7-8</button>
-                                    <button>Show Entire File</button>
-                                </span>
-                                <div id="byte_range"></div>
-                                <div id="byte_content"></div>
-                            </div>
-                        </div>  END ROW -->
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-3 border" ng-controller="ToolTreeController">
                         <h3>Tool Tree</h3>
                         <input type="text" ng-model="search" placeholder="Search..."/>
-
+                        <h4>Sort</h4>
+                        <h2>ToolId: {{toolId}} </h2>
+                        <select data-ng-model="treeList.roleName"
+                data-ng-options="a.roleName for a in treeList">             
+        </select>
                         <!--
                           [TREE attribute]
                           angular-treeview: the treeview directive
@@ -88,9 +78,10 @@
                           node-label : each node's label
                           node-children: each node's children
                         -->
+                        <button ng-click="callNotify(message);">NOTIFY</button>
                         <div
                             data-angular-treeview="true"
-                            data-tree-model="treeList"
+                            data-tree-model="treeList" 
                             data-node-id="id"
                             data-node-label="roleName"
                             data-node-children="children" 
@@ -114,6 +105,7 @@
                     <div class="col-md-6">
                         <div class="col-md-6" ng-controller="ToolDataController">
                             <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
+                                <h2>ToolId: {{toolId}} </h2>
                                 <ul>
                                     <li>Selected Node: {{toolData[0].roleName}}</li>
                                     <li>Node ID: {{currentNode.id}}</li>
@@ -143,6 +135,7 @@
                     <div  class="col-md-3">
                         <div class="col-md-12 border" ng-controller="DataTreeController">
                             <h3>Data Tree</h3>
+                            <h2>ToolId: {{toolId}}</h2>
                             <!--
                               [TREE attribute]
                               angular-treeview: the treeview directive
@@ -167,29 +160,25 @@
 
             <!-- WORKFLOW ROW -->
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12" ng-controller="PrevNextToolController">
                     <h3>Prev/Next</h3>
                     <div class="col-md-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">
-                                    Previous Tools
-                                </h3>
+                                <h3 class="panel-title">Previous Tools</h3>
                             </div>
                             <div class="panel-body">
-                                Panel content
+                                <h2>ToolId: {{toolId}}</h2>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">
-                                    Next Tools
-                                </h3>
+                                <h3 class="panel-title">Next Tools</h3>
                             </div>
                             <div class="panel-body">
-                                Panel content
+                                <h2>ToolId: {{toolId}}</h2>
                             </div>
                         </div>
                     </div>
