@@ -65,11 +65,11 @@
                     <div class="col-md-3 border" ng-controller="ToolTreeController">
                         <h3>Tool Tree</h3>
                         <input type="text" ng-model="search" placeholder="Search..."/>
-                        <h4>Sort</h4>
-                        <h2>ToolId: {{toolId}} </h2>
+                         <h2>Tool ID: {{toolId}} </h2>
+                         <h4>Sort</h4>
                         <select data-ng-model="treeList.roleName"
-                data-ng-options="a.roleName for a in treeList">             
-        </select>
+                                data-ng-options="a.roleName for a in treeList">             
+                        </select>
                         <!--
                           [TREE attribute]
                           angular-treeview: the treeview directive
@@ -78,7 +78,6 @@
                           node-label : each node's label
                           node-children: each node's children
                         -->
-                        <button ng-click="callNotify(message);">NOTIFY</button>
                         <div
                             data-angular-treeview="true"
                             data-tree-model="treeList" 
@@ -87,7 +86,8 @@
                             data-node-children="children" 
                             >
                         </div>
-
+                        <button ng-click="setToolId(currentNode.id)">Set ToolId</button>
+                        
                         <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
                             <ul>
                                 <li>Selected Node: {{currentNode.roleName}}</li>
@@ -103,29 +103,36 @@
                     </div> <!-- END ToolTreeController -->
 
                     <div class="col-md-6">
-                        <div class="col-md-6" ng-controller="ToolDataController">
-                            <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
-                                <h2>ToolId: {{toolId}} </h2>
-                                <ul>
-                                    <li>Selected Node: {{toolData[0].roleName}}</li>
-                                    <li>Node ID: {{currentNode.id}}</li>
-                                    <li># of Children: {{currentNode.children.length}}</li>
-                                    <li ng-repeat="child in currentNode.children| filter:search">Child Name: {{child.roleName}}  Input: {{ child.inputs[0].inputName}}</li>
-                                    <div  draggable ng-show="children" id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
-                                        Use Tool </div>
-                                </ul>
+                        <div class="row">
+                            <div class="col-md-12" ng-controller="ToolDataController">
+                                <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
+                                    <h2>ToolId: {{toolId}} </h2>
+                                    <ul>
+                                        <li>Selected Node: {{toolData[0].roleName}}</li>
+                                        <li>Node ID: {{currentNode.id}}</li>
+                                        <li># of Children: {{currentNode.children.length}}</li>
+                                        <li ng-repeat="child in currentNode.children| filter:search">Child Name: {{child.roleName}}  Input: {{ child.inputs[0].inputName}}</li>
+                                        <div  draggable ng-show="children" id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
+                                            Use Tool </div>
+                                    </ul>
+                                </div> <!-- END TOP ROW -->
+                                
+                                
+                                <div class="row">
+                                    <div class="col-md-6 pull-right">
+                                        <div class="col-md-12">Data Set
+                                            <div class="bin" droppable drop="handleDrop()"> </div></div>
+                                        <div class="col-md-12">
+                                            <h3>Parameters</h3> 
+                                            <input type="text" ng-model="parameter" placeholder="Parameter"/>
+                                            <p>{{parameter}}</p>
+                                        </div>
+                                    </div>
+                                </div> <!-- END tool parameter, bottom row -->
                             </div>
                         </div>
 
-                        <div class="col-md-6">
-                            <div class="col-md-12">Data Set
-                                <div class="bin" droppable drop="handleDrop()"> </div></div>
-                            <div class="col-md-12">
-                                <h3>Parameters</h3> 
-                                <input type="text" ng-model="parameter" placeholder="Parameter"/>
-                                <p>{{parameter}}</p>
-                            </div>
-                        </div>
+
                         <!--                        <ul ng-repeat="node in treeList">
                                                     <li ng-repeat="(key, val) in node">{{key}}: {{val}}</li>
                                                 </ul>-->
@@ -133,6 +140,7 @@
 
 
                     <div  class="col-md-3">
+
                         <div class="col-md-12 border" ng-controller="DataTreeController">
                             <h3>Data Tree</h3>
                             <h2>ToolId: {{toolId}}</h2>
@@ -154,6 +162,7 @@
                             </div>
 
                         </div>
+
                     </div> <!-- END DATA TREE COLUMN -->
                 </div> <!-- End row col-12 -->
             </div> <!-- END TOP ROW -->
@@ -175,7 +184,8 @@
                     <div class="col-md-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h3 class="panel-title">Next Tools</h3>
+                                <h3 class="panel-title">Next Tools
+                                </h3>
                             </div>
                             <div class="panel-body">
                                 <h2>ToolId: {{toolId}}</h2>
