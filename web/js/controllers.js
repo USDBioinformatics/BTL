@@ -15,7 +15,7 @@ treeListController.controller('ToolTreeController', function($scope, TreeListSer
 
 treeListController.controller('ToolDataController', function($scope, TreeListService, sharedData) {
     TreeListService.success(function(data) {
-        $scope.toolData = data;
+        $scope.toolData = sharedData.getToolData();
         $scope.toolId = sharedData.getToolId();
     });
 });
