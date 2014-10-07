@@ -47,7 +47,7 @@
                             <h3 class="panel-title">Similar Tools</h3>
                         </div>
                         <div class="panel-body">
-                            <h2>ToolId: {{toolId}}</h2>
+                            <h2>ToolId: {{currentNode.id}}</h2>
                             <ul>
                                 <li ng-repeat="tool in similarToolList">{{tool.toolId}}
                                     <img ng-src="{{tool.imageUrl}}">
@@ -65,8 +65,8 @@
                     <div class="col-md-3 border" ng-controller="ToolTreeController">
                         <h3>Tool Tree</h3>
                         <input type="text" ng-model="search" placeholder="Search..."/>
-                         <h2>Tool ID: {{toolId}} </h2>
-                         <h4>Sort</h4>
+                        <h2 ng-click="tool.toolId = 'test'">Tool ID: {{tool.toolId}} </h2>
+                        <h4>Sort</h4>
                         <select data-ng-model="treeList.roleName"
                                 data-ng-options="a.roleName for a in treeList">             
                         </select>
@@ -87,7 +87,9 @@
                             >
                         </div>
                         <button ng-click="setToolId(currentNode.id)">Set ToolId</button>
-                        
+                        <h3>ToolID: {{toolId}}</h3>
+                        <h3>Test: {{test}}</h3>
+
                         <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
                             <ul>
                                 <li>Selected Node: {{currentNode.roleName}}</li>
@@ -116,8 +118,8 @@
                                             Use Tool </div>
                                     </ul>
                                 </div> <!-- END TOP ROW -->
-                                
-                                
+
+
                                 <div class="row">
                                     <div class="col-md-6 pull-right">
                                         <div class="col-md-12">Data Set

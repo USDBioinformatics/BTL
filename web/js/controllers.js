@@ -4,8 +4,6 @@ treeListController.controller('ToolTreeController', function($scope, TreeListSer
     TreeListService.success(function(data) {
         $scope.treeList = data;
     });
-
-    
     $scope.objectValue = sharedData.getObject();
     $scope.setToolId = function(newValue) {
         $scope.objectValue.data = newValue;
