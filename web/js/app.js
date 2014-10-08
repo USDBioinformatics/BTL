@@ -1,6 +1,5 @@
 (function () {
-    var app = angular.module('BTL', ['angularTreeview', 'Services', 'Controllers']);
-
-
+    var app = angular.module('BTL', ['Services', 'Controllers', 'Directives']);
+    
 })();
     
