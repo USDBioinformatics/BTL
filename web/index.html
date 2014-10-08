@@ -38,7 +38,7 @@
             </div><!-- /.container-fluid -->
         </nav>
 
-        <div class="container-fluid">
+        <div class="container-fluid" ng-controller="GlobalController">
 
             <div class="row">
                 <div class="col-md-12" id="similarToolsContainer" ng-controller="SimilarToolController">
@@ -47,7 +47,7 @@
                             <h3 class="panel-title">Similar Tools</h3>
                         </div>
                         <div class="panel-body">
-                            <h2>ToolId: {{toolId}}</h2>
+                            <h2>ToolId:{{test.toolId}}</h2>
                             <ul>
                                 <li ng-repeat="tool in similarToolList">{{tool.toolId}}
                                     <img ng-src="{{tool.imageUrl}}">
@@ -65,11 +65,10 @@
                     <div class="col-md-3 border" ng-controller="ToolTreeController">
                         <h3>Tool Tree</h3>
                         <input type="text" ng-model="search" placeholder="Search..."/>
-                                                <select data-ng-model="treeList.roleName"
-                                data-ng-options="a.roleName for a in treeList">             
-                        </select>
+                        <select data-ng-model="treeList.roleName" data-ng-options="a.roleName for a in treeList"></select>
                         <h2>Tool ID: {{toolTree.currentNode.id}} </h2>
-
+                        
+                        
                         <!--
                           [TREE attribute]
                           angular-treeview: the treeview directive
@@ -178,6 +177,7 @@
                                 <h3 class="panel-title">Previous Tools</h3>
                             </div>
                             <div class="panel-body">
+                                
                                 <h2>ToolId: {{toolId}}</h2>
                             </div>
                         </div>

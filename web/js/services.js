@@ -19,8 +19,9 @@ sharedServices.factory('DataTreeService', function($http) {
     return  $http.get("./input_files/dataTree.json")
 });
 
-sharedServices.service('sharedData', myValue, function() {
-    var toolId = '001';
+
+sharedServices.service('sharedData', function() {
+    var toolId = '001x';
     var objectValue = {
         data: 'test object value'
     };
