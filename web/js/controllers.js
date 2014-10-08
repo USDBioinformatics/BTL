@@ -1,41 +1,51 @@
-var treeListController = angular.module("Controllers", []);
+var controllers = angular.module("Controllers", []);
 
-treeListController.controller('ToolTreeController', function($scope, TreeListService, sharedData) { //pass Tree factory
+controllers.controller('ToolTreeController', function($scope, TreeListService, sharedData) { //pass Tree factory
     TreeListService.success(function(data) {
         $scope.treeList = data;
     });
-    
+    $scope.$watch('toolTree.currentNode', function(newObj, oldObj) {
+        if ($scope.toolTree && angular.isObject($scope.toolTree.currentNode)) {
+            console.log('Node Selected!!');
+            console.log($scope.toolTree.currentNode);
+            $scope.setToolId = function(newValue) {
+                $scope.objectValue.data = newValue;
+                sharedData.setToolId(newValue);
+                $scope.toolId = sharedData.getToolId();
+            };
+        }
+    }, false);
+
     $scope.objectValue = sharedData.getObject();
-    $scope.setToolId = function(newValue) {
-        $scope.objectValue.data = newValue;
-        sharedData.setToolId(newValue);
-        $scope.toolId = sharedData.getToolId();
-    }
+
 });
 
-treeListController.controller('ToolDataController', function($scope, TreeListService, sharedData) {
+controllers.controller('ToolDataController', function($scope, TreeListService, sharedData) {
     TreeListService.success(function(data) {
-        $scope.toolData = sharedData.getToolData();
         $scope.toolId = sharedData.getToolId();
     });
 });
 
-treeListController.controller('DataTreeController', function($scope, DataTreeService, sharedData) {
+controllers.controller('DataTreeController', function($scope, DataTreeService, sharedData) {
     DataTreeService.success(function(data) {
         $scope.dataTree = data;
         $scope.toolId = sharedData.getToolId();
     });
 });
 
-treeListController.controller('SimilarToolController', function($scope, SimilarToolService, sharedData) { //data is injected from app.factory 'Data' service
+controllers.controller('SimilarToolController', function($scope, SimilarToolService, sharedData) { //data is injected from app.factory 'Data' service
     SimilarToolService.success(function(data) {
         $scope.similarToolList = data;
-        $scope.toolId = sharedData.getToolId();
-        
+
+        $scope.$watch('toolTree.currentNode', function(newObj, oldObj) {
+            alert('watched');
+        }
+        , false);
+
     });
 });
 
-treeListController.controller('PrevNextToolController', function($scope, sharedData) { //data is injected from app.factory 'Data' service
+controllers.controller('PrevNextToolController', function($scope, sharedData) { //data is injected from app.factory 'Data' service
     $scope.toolId = sharedData.getToolId();
 });
 

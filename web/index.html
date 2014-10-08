@@ -65,11 +65,11 @@
                     <div class="col-md-3 border" ng-controller="ToolTreeController">
                         <h3>Tool Tree</h3>
                         <input type="text" ng-model="search" placeholder="Search..."/>
-                        <h2 ng-click="toolId = currentNode.id">Tool ID: {{toolId}} </h2>
-                        <h4>Sort</h4>
-                        <select data-ng-model="treeList.roleName"
+                                                <select data-ng-model="treeList.roleName"
                                 data-ng-options="a.roleName for a in treeList">             
                         </select>
+                        <h2>Tool ID: {{toolTree.currentNode.id}} </h2>
+
                         <!--
                           [TREE attribute]
                           angular-treeview: the treeview directive
@@ -81,22 +81,22 @@
                         <div
                             data-angular-treeview="true"
                             data-tree-model="treeList" 
+                            data-tree-id="toolTree"
                             data-node-id="id"
                             data-node-label="roleName"
                             data-node-children="children" 
-                            ng-click="setToolId(currentNode.id)"
                             >
                         </div>
 
                         <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
                             <ul>
-                                <li>Selected Node: {{currentNode.roleName}}</li>
-                                <li>Node ID: {{currentNode.id}}</li>
-                                <li># of Children: {{currentNode.children.length}}</li>
-                                <li ng-repeat="child in currentNode.children| filter:search">Child Name: {{child.roleName}}  Input: {{ child.inputs[0].inputName}}</li>
-                                <li>Input Format: {{currentNode.inputs[0].format}}</li>
-                                <li>Output Format: {{currentNode.outputs[0].format}}</li>
-                                <div  draggable ng-show="children" id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
+                                <li>Selected Node: {{toolTree.currentNode.roleName}}</li>
+                                <li>Node ID: {{toolTree.currentNode.id}}</li>
+                                <li># of Children: {{toolTree.currentNode.children.length}}</li>
+                                <li ng-repeat="child in toolTree.currentNode.children| filter:search">Child Name: {{child.roleName}}  Input: {{ child.inputs[0].inputName}}</li>
+                                <li>Input Format: {{toolTree.currentNode.inputs[0].format}}</li>
+                                <li>Output Format: {{toolTree.currentNode.outputs[0].format}}</li>
+                                <div  draggable  id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
                                     Use Tool </div>
                             </ul>
                         </div>
@@ -206,7 +206,6 @@
             <script type="text/javascript" src="angular/angular.js"></script>
             <!-- INCLUDED JS -->
             <script type="text/javascript" src="js/app.js"></script>
-            <script type="text/javascript" src="js/treeview.js"></script>
             <script type="text/javascript" src="js/services.js"></script>
             <script type="text/javascript" src="js/controllers.js"></script>
             <script type="text/javascript" src="js/directives.js"></script>

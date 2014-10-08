@@ -1,4 +1,4 @@
-var sharedDirectives = angular.module("sharedDirectives", []);
+var sharedDirectives = angular.module("Directives", []);
 
 sharedDirectives.directive('draggable', function() {
         return function(scope, element) {
