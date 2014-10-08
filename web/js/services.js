@@ -1,6 +1,12 @@
 var sharedServices = angular.module("Services", []);
 
+sharedServices.value("myValue"  , "12345");
 
+function MyService(myValue) {
+    this.doIt = function() {
+        console.log("done: " + myValue);
+    }
+}
 sharedServices.factory('TreeListService', function($http) {
     return $http.get("./input_files/reporting_file.json");
 });
@@ -13,7 +19,7 @@ sharedServices.factory('DataTreeService', function($http) {
     return  $http.get("./input_files/dataTree.json")
 });
 
-sharedServices.service('sharedData', function() {
+sharedServices.service('sharedData', myValue, function() {
     var toolId = '001';
     var objectValue = {
         data: 'test object value'
