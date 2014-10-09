@@ -17,7 +17,7 @@
                                 "roleName": "Test Tool 1",
                                 "id": "001",
                                 "toolName": "Test Tool 1",
-                                "toolDescription": "Test tool 1 description",
+							    "toolDescription": "Test tool 1 description",
 								"imageUrl" : "../images/wrench.jpg",
 								"inputs" : [
 									{ 

@@ -47,7 +47,7 @@
                             <h3 class="panel-title">Similar Tools</h3>
                         </div>
                         <div class="panel-body">
-                            <h2>ToolId:{{test.toolId}}</h2>
+                            <h2>Node Id:{{selectedNode.id}}</h2>
                             <ul>
                                 <li ng-repeat="tool in similarToolList">{{tool.toolId}}
                                     <img ng-src="{{tool.imageUrl}}">
@@ -67,7 +67,6 @@
                         <input type="text" ng-model="search" placeholder="Search..."/>
                         <select data-ng-model="treeList.roleName" data-ng-options="a.roleName for a in treeList"></select>
                         <h2>Tool ID: {{toolTree.currentNode.id}} </h2>
-                        
                         
                         <!--
                           [TREE attribute]
@@ -105,7 +104,7 @@
                         <div class="row">
                             <div class="col-md-12" ng-controller="ToolDataController">
                                 <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
-                                    <h2>ToolId: {{toolId}} </h2>
+                                    <h2>ToolId:{{selectedNode.id}}</h2>
                                     <ul>
                                         <li>Selected Node: {{toolData[0].roleName}}</li>
                                         <li>Node ID: {{currentNode.id}}</li>

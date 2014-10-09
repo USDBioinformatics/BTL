@@ -1,12 +1,5 @@
 var sharedServices = angular.module("Services", []);
 
-sharedServices.value("myValue"  , "12345");
-
-function MyService(myValue) {
-    this.doIt = function() {
-        console.log("done: " + myValue);
-    }
-}
 sharedServices.factory('TreeListService', function($http) {
     return $http.get("./input_files/reporting_file.json");
 });
