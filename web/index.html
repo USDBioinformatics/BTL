@@ -40,7 +40,7 @@
 
         <div class="container-fluid" ng-controller="GlobalController">
 
-            <div class="row">
+            <div class="row" ng-show="selectedNode.isTool">
                 <div class="col-md-12" id="similarToolsContainer" ng-controller="SimilarToolController">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -48,6 +48,13 @@
                         </div>
                         <div class="panel-body">
                             <h2>Node Id:{{selectedNode.id}}</h2>
+                            <h2>Node Name: {{selectedNode.name}}</h2>
+                            <h2># Children: {{selectedNode.children.length}} </h2>
+                            <ul ng-show="selectedNode.isTool">
+                                <li ng-repeat="format in toolInputs.format">{{format}}</li>
+                            </ul>
+                            
+                            <hr class="small"></hr>
                             <ul>
                                 <li ng-repeat="tool in similarToolList">{{tool.toolId}}
                                     <img ng-src="{{tool.imageUrl}}">
@@ -67,6 +74,7 @@
                         <input type="text" ng-model="search" placeholder="Search..."/>
                         <select data-ng-model="treeList.roleName" data-ng-options="a.roleName for a in treeList"></select>
                         <h2>Tool ID: {{toolTree.currentNode.id}} </h2>
+                        
                         
                         <!--
                           [TREE attribute]
