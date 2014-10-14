@@ -60,7 +60,7 @@
 									{ 
 										"inputId" : "001",
 										"inputName" : "Test Input 1",
-										"format" : ".txt"
+										"format" : ".fasta"
 									},
 									{ 
 										"inputId" : "002",

@@ -53,10 +53,11 @@
                             <ul ng-show="selectedNode.isTool">
                                 <li ng-repeat="format in toolInputs.format">{{format}}</li>
                             </ul>
-                            
+
                             <hr class="small"></hr>
                             <ul>
-                                <li ng-repeat="tool in similarToolList">{{tool.toolId}}
+                                <li ng-repeat="tool in similarToolList" ng-if="tool.input === toolInputs.format[0] || tool.input === toolInputs.format[1]">{{tool.toolId}}
+                                    type={{tool.input}}
                                     <img ng-src="{{tool.imageUrl}}">
                                 </li>
                             </ul>
@@ -66,16 +67,13 @@
                 </div> <!-- END SIMILAR TOOL CONTROLLER -->
             </div> <!-- END SIMILAR TOOL ROW -->
 
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-3 border" ng-controller="ToolTreeController">
                         <h3>Tool Tree</h3>
                         <input type="text" ng-model="search" placeholder="Search..."/>
                         <select data-ng-model="treeList.roleName" data-ng-options="a.roleName for a in treeList"></select>
-                        <h2>Tool ID: {{toolTree.currentNode.id}} </h2>
-                        
-                        
+
                         <!--
                           [TREE attribute]
                           angular-treeview: the treeview directive
@@ -100,8 +98,6 @@
                                 <li>Node ID: {{toolTree.currentNode.id}}</li>
                                 <li># of Children: {{toolTree.currentNode.children.length}}</li>
                                 <li ng-repeat="child in toolTree.currentNode.children| filter:search">Child Name: {{child.roleName}}  Input: {{ child.inputs[0].inputName}}</li>
-                                <li>Input Format: {{toolTree.currentNode.inputs[0].format}}</li>
-                                <li>Output Format: {{toolTree.currentNode.outputs[0].format}}</li>
                                 <div  draggable  id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
                                     Use Tool </div>
                             </ul>
@@ -184,7 +180,7 @@
                                 <h3 class="panel-title">Previous Tools</h3>
                             </div>
                             <div class="panel-body">
-                                
+
                                 <h2>ToolId: {{toolId}}</h2>
                             </div>
                         </div>

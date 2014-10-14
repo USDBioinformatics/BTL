@@ -48,10 +48,7 @@ controllers.controller('SimilarToolController', function($scope, SimilarToolServ
     SimilarToolService.success(function(data) {
         $scope.similarToolList = data;
     });
-    $scope.$watch('toolInputs.count', function(newObj, oldObj) {
-        alert("watched in similarTool");
-        $scope.similarTools = [];
-    });
+    
 });
 controllers.controller('PrevNextToolController', function($scope, sharedData) { //data is injected from app.factory 'Data' service
     $scope.toolId = sharedData.getToolId();
