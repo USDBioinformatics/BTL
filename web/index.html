@@ -108,11 +108,10 @@
                         <div class="row">
                             <div class="col-md-12" ng-controller="ToolDataController">
                                 <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
-                                    <h2>ToolId:{{selectedNode.id}}</h2>
                                     <ul>
-                                        <li>Selected Node: {{toolData[0].roleName}}</li>
-                                        <li>Node ID: {{currentNode.id}}</li>
-                                        <li># of Children: {{currentNode.children.length}}</li>
+                                        <li>Selected Node: {{selectedNode.id}}</li>
+                                        <li># of Children: {{selectedNode.childrenCt}}</li>
+                                        
                                         <li ng-repeat="child in currentNode.children| filter:search">Child Name: {{child.roleName}}  Input: {{ child.inputs[0].inputName}}</li>
                                         <div  draggable ng-show="children" id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
                                             Use Tool </div>
@@ -157,7 +156,8 @@
                             -->
                             <div
                                 data-angular-treeview="true"
-                                data-tree-model="dataTree"
+                                data-dataset-tree-model="dataTree"
+                                data-tree-id="dataToolTree"
                                 data-node-id="id"
                                 data-node-label="roleName"
                                 data-node-children="children" 

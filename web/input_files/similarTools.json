@@ -15,7 +15,7 @@
 		"toolId": "003",
 		"toolName" : "Tool Name 1",
 		"imageUrl" : "./images/wrench.jpg",
-		"input" : ".txt"
+		"input" : ".fastq"
 	},
 	{
 		"toolId": "004",

@@ -33,6 +33,11 @@
 										"inputId" : "002",
 										"inputName" : "Test Input 2",
 										"format" : ".fasta"
+									},
+																		{ 
+										"inputId" : "003",
+										"inputName" : "Test Input 3",
+										"format" : ".fastq"
 									}
 								],
 								"outputs" : [
