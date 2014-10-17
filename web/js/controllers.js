@@ -7,6 +7,12 @@ controllers.controller('GlobalController', function($scope) { //pass Tree factor
     $scope.toolInputs = {
         "format": []
     };
+    
+    
+    
+    $scope.dataTree = {
+        "id" : ""
+    };
 });
 
 controllers.controller('ToolTreeController', function($scope, TreeListService) { //pass Tree factory
@@ -51,7 +57,9 @@ controllers.controller('DataTreeController', function($scope, DataTreeService, s
     });
     
     $scope.$watch('dataToolTree.currentNode', function() {
-        alert("WATCHED IN DATA TREE");
+         if ($scope.dataToolTree && angular.isObject($scope.dataToolTree.currentNode)) {
+        $scope.dataTree.id = $scope.dataToolTree.currentNode.id;
+         };
         ///HOW TO GET $SCOPE.CURRENTNODE from the second dataTree????????  Two directives, one for each tree.  Two scopes....how to talk with directives
         //http://seanhess.github.io/2013/10/14/angularjs-directive-design.html 
     }); //End currentNode $watch

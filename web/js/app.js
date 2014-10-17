@@ -13,15 +13,15 @@
                     e = '<ul><li data-ng-repeat="node in ' + g + '"><i class="collapsed" data-ng-show="node.' + d + '.length && node.collapsed" data-ng-click="' + a + '.selectNodeHead(node)"></i><i class="expanded" data-ng-show="node.' + d + '.length && !node.collapsed" data-ng-click="' + a + '.selectNodeHead(node)"></i><i class="normal" data-ng-hide="node.' +
                             d + '.length"></i> <span data-ng-class="node.selected" data-ng-click="' + a + '.selectNodeLabel(node)">{{node.' + e + '}}</span><div data-ng-hide="node.collapsed" data-tree-id="' + a + '" data-tree-model="node.' + d + '" data-node-id=' + (c.nodeId || "id") + " data-node-label=" + e + " data-node-children=" + d + "></div></li></ul>";
                     a && g && (c.angularTreeview && (b[a] = b[a] || {}, b[a].selectNodeHead = b[a].selectNodeHead || function(a) {
-                        a.collapsed = !a.collapsed
+                        a.collapsed = !a.collapsed;
                     }, b[a].selectNodeLabel = b[a].selectNodeLabel || function(c) {
                         b[a].currentNode && b[a].currentNode.selected &&
                                 (b[a].currentNode.selected = void 0);
                         c.selected = "selected";
-                        b[a].currentNode = c
-                    }), h.html('').append($compile(e)(b)))
-                }}
-        })
+                        b[a].currentNode = c;
+                    }), h.html('').append($compile(e)(b)));
+                }};
+        });
     })(angular);
 
     (function(f) {
@@ -36,15 +36,16 @@
                     e = '<ul><li data-ng-repeat="node in ' + g + '"><i class="collapsed" data-ng-show="node.' + d + '.length && node.collapsed" data-ng-click="' + a + '.selectNodeHead(node)"></i><i class="expanded" data-ng-show="node.' + d + '.length && !node.collapsed" data-ng-click="' + a + '.selectNodeHead(node)"></i><i class="normal" data-ng-hide="node.' +
                             d + '.length"></i> <span data-ng-class="node.selected" data-ng-click="' + a + '.selectNodeLabel(node)">{{node.' + e + '}}</span><div data-ng-hide="node.collapsed" data-tree-id="' + a + '" data-tree-model="node.' + d + '" data-node-id=' + (c.nodeId || "id") + " data-node-label=" + e + " data-node-children=" + d + "></div></li></ul>";
                     a && g && (c.angularTreeview && (b[a] = b[a] || {}, b[a].selectNodeHead = b[a].selectNodeHead || function(a) {
-                        a.collapsed = !a.collapsed
+                        a.collapsed = !a.collapsed;
                     }, b[a].selectNodeLabel = b[a].selectNodeLabel || function(c) {
                         b[a].currentNode && b[a].currentNode.selected &&
                                 (b[a].currentNode.selected = void 0);
                         c.selected = "selected";
-                        b[a].currentNode = c
-                    }), h.html('').append($compile(e)(b)))
-                }}
-        })
+                        ;
+                        b[a].currentNode = c;
+                    }), h.html('').append($compile(e)(b)));
+                }};
+        });
     })(angular);
 
 })();
