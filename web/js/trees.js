@@ -1,7 +1,11 @@
-(function() {
-    var app = angular.module('BTL', ['angularTreeview', 'dataTreeview', 'Services', 'Directives', 'Controllers']);
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-    (function(f) {
+
+(function(f) {
         f.module("angularTreeview", []).directive("treeModel", function($compile) {
             return{restrict: "A",
                 link: function(b, h, c) {
@@ -48,8 +52,3 @@
                 }};
         });
     })(angular);
-
-})();
-
-
-    

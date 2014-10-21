@@ -2,7 +2,6 @@
     {
         "roleName": "Applications",
         "id": "role1",
-		"test" : "1x",
         "children": [
             {
                 "roleName": "Analysis and Processing",
@@ -43,7 +42,7 @@
 								"outputs" : [
 									{
 										"outputName" : "Test Output 1",
-										"format" : "fasta"
+										"format" : ".fasta"
 									}
 								]
 							}
@@ -75,8 +74,8 @@
 								],
 								"outputs" : [
 									{
-										"outputName" : "Test Output 1",
-										"format" : "fasta"
+										"outputName" : "Test Output 2",
+										"format" : ".fasta"
 									}
 								]
 							}

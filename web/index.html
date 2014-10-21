@@ -10,6 +10,7 @@
     </head>
 
     <body ng-app="BTL">
+        <!-- ******** NAVIGATION ********* -->
         <nav class="navbar navbar-default" role="navigation">
             <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -37,9 +38,19 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
+        <!-- END NAV -->
 
+        <!--BEGIN MAIN CONTAINER - GlobalController -->
+        <!--******************************************************************************************
+                     TOOL TREE
+******************************************************************************************
+        -->
         <div class="container-fluid" ng-controller="GlobalController">
 
+            <!--******************************************************************************************
+                                    SIMILAR TOOLS SECTION
+            ******************************************************************************************
+            -->
             <div class="row" ng-show="selectedNode.isTool">
                 <div class="col-md-12" id="similarToolsContainer" ng-controller="SimilarToolController">
                     <div class="panel panel-default">
@@ -47,16 +58,22 @@
                             <h3 class="panel-title">Similar Tools</h3>
                         </div>
                         <div class="panel-body">
-                            <h2>Node Id:{{selectedNode.id}}</h2>
-                            <h2>Node Name: {{selectedNode.name}}</h2>
-                            <h2># Children: {{selectedNode.children.length}} </h2>
-                            <ul ng-show="selectedNode.isTool">
-                                <li ng-repeat="format in toolInputs.format">{{format}}</li>
-                            </ul>
-
+                            <h2>Selected Tool</h2>
+                            <h4>Node Id:{{selectedNode.id}}</h4>
+                            <h4>Node Name: {{selectedNode.name}}</h4>
+                            <div ng-show="selectedNode.isTool">
+                                <h2>Tool Inputs</h2>
+                                <div ng-repeat="format in toolInputs.format">{{format}}</div>
+                            </div>
+                            <hr class="small"></hr>
+                            <div ng-repeat="tool in similarToolList">
+                                <div ng-if="showTools(tool)">
+                                    <div>Test: {{showTools(tool)}}</div>
+                                </div>
+                            </div>
                             <hr class="small"></hr>
                             <ul>
-                                <li ng-repeat="tool in similarToolList" ng-if="tool.input === toolInputs.format[0] || tool.input === toolInputs.format[1]">{{tool.toolId}}
+                                <li ng-repeat="tool in similarToolList" ng-if="tool.input === toolInputs.format[0] || tool.input === toolInputs.format[1] || tool.input === toolInputs.format[2]">{{tool.toolId}}
                                     type={{tool.input}}
                                     <img ng-src="{{tool.imageUrl}}">
                                 </li>
@@ -67,6 +84,10 @@
                 </div> <!-- END SIMILAR TOOL CONTROLLER -->
             </div> <!-- END SIMILAR TOOL ROW -->
 
+            <!--******************************************************************************************
+                                 TOOL TREE
+            ******************************************************************************************
+            -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="col-md-3 border" ng-controller="ToolTreeController">
@@ -92,45 +113,37 @@
                             >
                         </div>
 
-                        <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
-                            <ul>
-                                <li>Selected Node: {{toolTree.currentNode.roleName}}</li>
-                                <li>Node ID: {{toolTree.currentNode.id}}</li>
-                                <li># of Children: {{toolTree.currentNode.children.length}}</li>
-                                <li ng-repeat="child in toolTree.currentNode.children| filter:search">Child Name: {{child.roleName}}  Input: {{ child.inputs[0].inputName}}</li>
-                                <div  draggable  id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
-                                    Use Tool </div>
-                            </ul>
-                        </div>
                     </div> <!-- END ToolTreeController -->
 
+                    <!--******************************************************************************************
+                                         Tool Information Section/ MIDDLE COLMN/ Parameters / Link to Run Project
+                    ******************************************************************************************
+                    -->
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-md-12" ng-controller="ToolDataController">
                                 <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
                                     <ul>
-                                        <li>Selected Node: {{selectedNode.id}}</li>
+                                        <li>Selected Node ID: {{selectedNode.id}}</li>
+                                        <li>Node Name: {{selectedNode.name}}</li>
                                         <li># of Children: {{selectedNode.childrenCt}}</li>
-                                        
-                                        <li ng-repeat="child in currentNode.children| filter:search">Child Name: {{child.roleName}}  Input: {{ child.inputs[0].inputName}}</li>
-                                        <div  draggable ng-show="children" id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
+
+                                        <div  draggable ng-show="selectedNode.isTool" id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
                                             Use Tool </div>
                                     </ul>
                                 </div> <!-- END TOP ROW -->
 
 
-                                <div class="row">
-                                    <div class="col-md-6 pull-right">
-                                        <div class="col-md-12">Data Set
-                                            <div class="bin" droppable drop="handleDrop()"> </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <h3>Parameters</h3> 
-                                            <input type="text" ng-model="parameter" placeholder="Parameter"/>
-                                            <p>{{parameter}}</p>
-                                        </div>
+                                <div class="col-md-6 pull-right">
+                                    <div class="col-md-12">Data Set
+                                        <div class="bin" droppable drop="handleDrop()"> </div>
                                     </div>
-                                </div> <!-- END tool parameter, bottom row -->
+                                    <div class="col-md-12">
+                                        <h3>Parameters</h3> 
+                                        <input type="text" ng-model="parameter" placeholder="Parameter"/>
+                                        <p>{{parameter}}</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
@@ -139,7 +152,10 @@
                                                     <li ng-repeat="(key, val) in node">{{key}}: {{val}}</li>
                                                 </ul>-->
                     </div> <!-- END TOOL DATA COlUMN -->
-
+                    <!--******************************************************************************************
+                                         DATA SET TREE / RIGHT COLUMN
+                    ******************************************************************************************
+                    -->
 
                     <div  class="col-md-3">
 
@@ -170,10 +186,14 @@
                 </div> <!-- End row col-12 -->
             </div> <!-- END TOP ROW -->
 
-            <!-- WORKFLOW ROW -->
+            <!--******************************************************************************************
+                                        PREVIOUS/ NEXT TOOL SECTION
+                ******************************************************************************************
+            -->
             <div class="row">
-                <div class="col-md-12" ng-controller="PrevNextToolController">
+                <div class="col-md-12" ng-show="selectedNode.isTool" ng-controller="PrevNextToolController">
                     <h3>Prev/Next</h3>
+
                     <div class="col-md-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -181,10 +201,12 @@
                             </div>
                             <div class="panel-body">
 
-                                <h2>ToolId: {{toolId}}</h2>
+                                <h4>ToolId: {{selectedNode.id}}</h4>
+                                
+                                <h4>Tool Outputs: {{toolOutputs.length}}</h4>
                             </div>
                         </div>
-                    </div>
+                    </div>  <!-- END PREV TOOLS -->
                     <div class="col-md-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -192,25 +214,27 @@
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                <h2>ToolId: {{toolId}}</h2>
+                                <h4>ToolId: {{selectedNode.id}}</h4>
                             </div>
                         </div>
-                    </div>
-                </div> <!-- END DROP BIN COLUMN -->
-            </div> <!-- END WORKFLOW col-md-12 -->
+                    </div> <!-- END NEXT TOOLS -->
+                </div> <!-- END COL-12 -->
+            </div> <!-- PREV/NEXT ROW -->
+
+        </div> <!-- END MAIN CONTAINER - GlobalController -->
 
 
-
-            <!-- jQuery -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script> 
-            <script src="bootstrap/js/bootstrap.min.js"></script>
-            <!-- Angular -->
-            <script type="text/javascript" src="angular/angular.js"></script>
-            <!-- INCLUDED JS -->
-            <script type="text/javascript" src="js/app.js"></script>
-            <script type="text/javascript" src="js/services.js"></script>
-            <script type="text/javascript" src="js/controllers.js"></script>
-            <script type="text/javascript" src="js/directives.js"></script>
+        <!-- INCLUDED JAVASCRIPT FILES -->
+        <!-- jQuery -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script> 
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <!-- Angular -->
+        <script type="text/javascript" src="angular/angular.js"></script>
+        <!-- INCLUDED JS -->
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/services.js"></script>
+        <script type="text/javascript" src="js/controllers.js"></script>
+        <script type="text/javascript" src="js/directives.js"></script>
     </body>
 </html>
