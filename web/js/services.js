@@ -14,7 +14,9 @@ sharedServices.factory('DataTreeService', function($http) {
 
 
 sharedServices.service('sharedData', function() {
-    var toolId = '001x';
+    var toolId = {
+        "id":""
+    };
     var objectValue = {
         data: 'test object value'
     };
@@ -24,7 +26,7 @@ sharedServices.service('sharedData', function() {
             return toolId;
         },
         setToolId: function(id){
-            toolId = id;
+            toolId.id = id;
         },
         getString: function() {
             return stringValue;

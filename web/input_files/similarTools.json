@@ -28,5 +28,11 @@
 		"toolName" : "Tool Name 1",
 		"imageUrl" : "./images/wrench.jpg",
 		"input" : ".txt"
+	},
+	{
+		"toolId": "006",
+		"toolName" : "Tool Name 2",
+		"imageUrl" : "./images/wrench.jpg",
+		"input" : ".fasta"
 	}
 ]

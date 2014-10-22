@@ -24,23 +24,6 @@ body{
     border: 3px #fff solid;
 }
 
-#inputSelect li{
-    color:#ff0;
-}
-
-#inputSelect button{
-    color:black;
-}
-
-#byte_content {
-    margin: 5px 0;
-    max-height: 100px;
-    overflow-y: auto;
-    overflow-x: hidden;
-}
-#byte_range { margin-top: 5px; }
-
-
 
 .bin {
   min-height: 175px;
@@ -89,10 +72,10 @@ h1,h3{
 margin: 0;
 padding: 0;
 list-style-type: none;
-text-align: center;
+text-align: left;
 }
 
-#similarToolsContainer ul li { display: inline; }
+#similarToolsContainer ul li { display: inline; padding:5px; }
 
 #similarToolsContainer ul li a
 {

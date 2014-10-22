@@ -6,9 +6,9 @@ controllers.controller('GlobalController', function($scope) { //pass Tree factor
         "name": "",
         "childrenCt": "",
         "parent": ""
-        
+
     };
-    
+
     $scope.toolInputs = {
         "format": []
     };
@@ -22,13 +22,13 @@ controllers.controller('GlobalController', function($scope) { //pass Tree factor
     };
 });
 
-controllers.controller('ToolTreeController', function($scope, TreeListService) { //pass Tree factory
+controllers.controller('ToolTreeController', function($scope, TreeListService, sharedData) { //pass Tree factory
     TreeListService.success(function(data) {
         $scope.treeList = data;
     });
     $scope.$watch('toolTree.currentNode', function() {
         var curNode;
-        
+
         if ($scope.toolTree && angular.isObject($scope.toolTree.currentNode)) {
             $scope.toolInputs.format.length = 0; //reset inputs array
 
@@ -41,7 +41,8 @@ controllers.controller('ToolTreeController', function($scope, TreeListService) {
             //if currentNode is a tool
             if (curNode.isTool) {
                 var inputCt = curNode.inputs.length;
-                if(inputCt === 0) alert('TOOL HAS NO INPUTS');
+                if (inputCt === 0)
+                    alert('TOOL HAS NO INPUTS');
                 for (i = 0; i < inputCt; i++) {
                     $scope.toolInputs.format.push(curNode.inputs[i].format);
                     $scope.selectedNode.isTool = true;
@@ -53,17 +54,31 @@ controllers.controller('ToolTreeController', function($scope, TreeListService) {
                     for (i = 0; i < outputCt; i++) {
                         $scope.toolOutputs.format.push(curNode.outputs[i].format);
                         alert('tool output= ' + curNode.outputs[i].format);
-                    } 
+                    }
                 }
             } else {
-                $scope.selectedNode.isTool = false; 
+                $scope.selectedNode.isTool = false;
             }
         }
     }); //End currentNode $watch
 });
 
 controllers.controller('ToolDataController', function($scope, TreeListService, sharedData) {
-    $scope.toolId = sharedData.getToolId();
+    $scope.onDragComplete = function(data, evt) {
+        console.log("drag success, data:", data);
+    };
+    $scope.onDropComplete = function(data, evt) {
+        console.log("drop success, data:", data);
+    };
+    //https://github.com/fatlinesofcode/ngDraggable
+    $scope.draggableObjects = [
+        {
+            "id": "testID1"
+        },
+        {
+            "id": "testID2"
+        }
+    ];
 });
 
 controllers.controller('DataTreeController', function($scope, DataTreeService, sharedData) {
@@ -86,30 +101,25 @@ controllers.controller('SimilarToolController', function($scope, SimilarToolServ
     SimilarToolService.success(function(data) {
         $scope.similarToolList = data;
     });
-    $scope.showTools = function(tool){
-        if(tool.input === '.txt'){
-           //create JSON file of similar tools. 
-           //$scope.similarToolList = NEWLY CREATED JSON FILE
-           
-             return "test"; //return true for ng-if
+    $scope.showTools = function(tool) {
+        if ($scope.toolInputs.format.length) {
+            var inputArray = [];
+            inputArray = $scope.toolInputs.format;
+
+            inputArray.forEach(function(input) {
+                if (input === tool.input) { //if the tool input is equal to the input of the tool in similarToolList
+                    return tool.input;
+                }
+                ;
+            });
         }
-    };
+    }; //end showTools()
 });
 
 controllers.controller('PrevNextToolController', function($scope, sharedData) { //data is injected from app.factory 'Data' service
-    $scope.toolId = sharedData.getToolId();
-    
+
     $scope.$watch('toolOutputs.format', function() {
-        alert('OUTPUT CHANGED');
+//        alert(toolOuptus.format.length);
+//        alert('OUTPUT CHANGED');
     });
 });
-
-
-
-//app.controller('BookController', ['$scope', '$http', function($scope, $http) {
-//    var bookId = 1;
-//
-//    $http.get('ourserver/books/' + bookId).success(function(bookData) {
-//        $scope.book = bookData;
-//    });
-//}]);

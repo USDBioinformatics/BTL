@@ -1,5 +1,5 @@
 (function() {
-    var app = angular.module('BTL', ['angularTreeview', 'dataTreeview', 'Services', 'Directives', 'Controllers']);
+    var app = angular.module('BTL', ['angularTreeview', 'dataTreeview', 'Services', 'ngDraggable', 'Controllers']);
 
     (function(f) {
         f.module("angularTreeview", []).directive("treeModel", function($compile) {

@@ -58,18 +58,19 @@
                             <h3 class="panel-title">Similar Tools</h3>
                         </div>
                         <div class="panel-body">
-                            <h2>Selected Tool</h2>
+                            <h2><u>Selected Tool</u></h2>
                             <h4>Node Id:{{selectedNode.id}}</h4>
                             <h4>Node Name: {{selectedNode.name}}</h4>
                             <div ng-show="selectedNode.isTool">
-                                <h2>Tool Inputs</h2>
-                                <div ng-repeat="format in toolInputs.format">{{format}}</div>
+                                <h2><u>Tool Inputs</u></h2>
+                                <ul>
+                                    <li ng-repeat="format in toolInputs.format">{{format}}</li>
+                                </ul>
                             </div>
                             <hr class="small"></hr>
+
                             <div ng-repeat="tool in similarToolList">
-                                <div ng-if="showTools(tool)">
-                                    <div>Test: {{showTools(tool)}}</div>
-                                </div>
+                                <div>{{showTools(tool)}}</div>
                             </div>
                             <hr class="small"></hr>
                             <ul>
@@ -127,16 +128,18 @@
                                         <li>Selected Node ID: {{selectedNode.id}}</li>
                                         <li>Node Name: {{selectedNode.name}}</li>
                                         <li># of Children: {{selectedNode.childrenCt}}</li>
-
-                                        <div  draggable ng-show="selectedNode.isTool" id="1" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">
-                                            Use Tool </div>
+                                    </ul>
+                                    <ul>    
+                                        <li ng-repeat="obj in draggableObjects">
+                                            <div ng-drag="true" ng-drag-data="obj" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">{{obj.id}}</div>
+                                        </li>
                                     </ul>
                                 </div> <!-- END TOP ROW -->
 
 
                                 <div class="col-md-6 pull-right">
                                     <div class="col-md-12">Data Set
-                                        <div class="bin" droppable drop="handleDrop()"> </div>
+                                        <div class="bin" ng-drop="true" ng-drop-success="onDropComplete($data,$event)"> </div>
                                     </div>
                                     <div class="col-md-12">
                                         <h3>Parameters</h3> 
@@ -202,7 +205,7 @@
                             <div class="panel-body">
 
                                 <h4>ToolId: {{selectedNode.id}}</h4>
-                                
+
                                 <h4>Tool Outputs: {{toolOutputs.length}}</h4>
                             </div>
                         </div>
@@ -236,5 +239,6 @@
         <script type="text/javascript" src="js/services.js"></script>
         <script type="text/javascript" src="js/controllers.js"></script>
         <script type="text/javascript" src="js/directives.js"></script>
+        <script type="text/javascript" src="js/ngDraggable.js"></script>
     </body>
 </html>

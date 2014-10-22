@@ -7,78 +7,78 @@
                 "roleName": "Analysis and Processing",
                 "id": "role11",
                 "collapsed": true,
-				"test" : "2x",
+                "test": "2x",
                 "children": [
                     {
                         "roleName": "Alignment Processing",
                         "id": "http://edamontology.org/operation_2951",
-						"test" : "3x",
+                        "test": "3x",
                         "children": [
                             {
                                 "roleName": "Test Tool 1",
                                 "id": "001",
-								"isTool" : true,
+                                "isTool": true,
                                 "toolName": "Test Tool 1",
-							    "toolDescription": "Test tool 1 description",
-								"imageUrl" : "../images/wrench.jpg",
-								"test" : "4x",
-								"inputs" : [
-									{ 
-										"inputId" : "001",
-										"inputName" : "Test Input 1",
-										"format" : ".txt"
-									},
-									{ 
-										"inputId" : "002",
-										"inputName" : "Test Input 2",
-										"format" : ".fasta"
-									},
-																		{ 
-										"inputId" : "003",
-										"inputName" : "Test Input 3",
-										"format" : ".fastq"
-									}
-								],
-								"outputs" : [
-									{
-										"outputName" : "Test Output 1",
-										"format" : ".fasta"
-									}
-								]
-							}
+                                "toolDescription": "Test tool 1 description",
+                                "imageUrl": "../images/wrench.jpg",
+                                "test": "4x",
+                                "inputs": [
+                                    {
+                                        "inputId": "001",
+                                        "inputName": "Test Input 1",
+                                        "format": ".txt"
+                                    },
+                                    {
+                                        "inputId": "002",
+                                        "inputName": "Test Input 2",
+                                        "format": ".fasta"
+                                    },
+                                    {
+                                        "inputId": "003",
+                                        "inputName": "Test Input 3",
+                                        "format": ".fastq"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "outputName": "Test Output 1",
+                                        "format": ".fasta"
+                                    }
+                                ]
+                            }
                         ]
                     },
                     {
                         "roleName": "File Processing",
                         "id": "http://edamontology.org/operation_2409",
                         "children": [
-                             {
+                            {
                                 "roleName": "Test Tool 2",
                                 "id": "002",
-								"isTool" : true,
+                                "isTool": true,
                                 "toolName": "Test Tool 2",
-							    "toolDescription": "Test tool 2 description",
-								"imageUrl" : "../images/wrench.jpg",
-								"test" : "4x",
-								"inputs" : [
-									{ 
-										"inputId" : "001",
-										"inputName" : "Test Input 1",
-										"format" : ".fasta"
-									},
-									{ 
-										"inputId" : "002",
-										"inputName" : "Test Input 2",
-										"format" : ".fastq"
-									}
-								],
-								"outputs" : [
-									{
-										"outputName" : "Test Output 2",
-										"format" : ".fasta"
-									}
-								]
-							}
+                                "toolDescription": "Test tool 2 description",
+                                "imageUrl": "../images/wrench.jpg",
+                                "test": "4x",
+                                "inputs": [
+                                    {
+                                        "inputId": "001",
+                                        "inputName": "Test Input 1",
+                                        "format": ".fasta"
+                                    },
+                                    {
+                                        "inputId": "002",
+                                        "inputName": "Test Input 2",
+                                        "format": ".fastq"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "outputName": "Test Output 2",
+                                        "format": ".fasta"
+                                    }
+                                ]
+                            }
                         ]
                     }
                 ]
@@ -93,9 +93,26 @@
                         "id": "role121",
                         "children": [
                             {
-                                "roleName": "Tool 1",
-                                "id": "role1211",
-                                "children": []
+                                "roleName": "Test Tool 2",
+                                "id": "002",
+                                "isTool": true,
+                                "toolName": "Test Tool 2",
+                                "toolDescription": "Test tool 2 description",
+                                "imageUrl": "../images/wrench.jpg",
+                                "test": "4x",
+                                "inputs": [
+                                    {
+                                        "inputId": "001",
+                                        "inputName": "Test Input 1",
+                                        "format": ".fasta"
+                                    }
+                                ],
+                                "outputs": [
+                                    {
+                                        "outputName": "Test Output 2",
+                                        "format": ".fasta"
+                                    }
+                                ]
                             },
                             {
                                 "roleName": "subApplication2-1-2",
@@ -108,7 +125,35 @@
                                             {
                                                 "roleName": "subApplication2-1-1",
                                                 "id": "role1211",
-                                                "children": []
+                                                "children": [
+                                                    {
+                                                        "roleName": "Test Tool 2",
+                                                        "id": "002",
+                                                        "isTool": true,
+                                                        "toolName": "Test Tool 2",
+                                                        "toolDescription": "Test tool 2 description",
+                                                        "imageUrl": "../images/wrench.jpg",
+                                                        "test": "4x",
+                                                        "inputs": [
+                                                            {
+                                                                "inputId": "001",
+                                                                "inputName": "Test Input 1",
+                                                                "format": ".fasta"
+                                                            },
+                                                            {
+                                                                "inputId": "002",
+                                                                "inputName": "Test Input 2",
+                                                                "format": ".fastq"
+                                                            }
+                                                        ],
+                                                        "outputs": [
+                                                            {
+                                                                "outputName": "Test Output 2",
+                                                                "format": ".fasta"
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
                                             }
                                         ]
                                     },
@@ -133,7 +178,35 @@
                 "roleName": "Biology",
                 "id": "role11",
                 "collapsed": true,
-                "children": []
+                "children": [
+                    {
+                        "roleName": "Test Tool 2",
+                        "id": "002",
+                        "isTool": true,
+                        "toolName": "Test Tool 2",
+                        "toolDescription": "Test tool 2 description",
+                        "imageUrl": "../images/wrench.jpg",
+                        "test": "4x",
+                        "inputs": [
+                            {
+                                "inputId": "001",
+                                "inputName": "Test Input 1",
+                                "format": ".fasta"
+                            },
+                            {
+                                "inputId": "002",
+                                "inputName": "Test Input 2",
+                                "format": ".fastq"
+                            }
+                        ],
+                        "outputs": [
+                            {
+                                "outputName": "Test Output 2",
+                                "format": ".fasta"
+                            }
+                        ]
+                    }
+                ]
             },
             {
                 "roleName": "Chemistry",
