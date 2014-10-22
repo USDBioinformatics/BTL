@@ -63,14 +63,12 @@ controllers.controller('ToolTreeController', function($scope, TreeListService, s
     }); //End currentNode $watch
 });
 
-controllers.controller('ToolDataController', function($scope, TreeListService, sharedData) {
-    $scope.onDragComplete = function(data, evt) {
-        console.log("drag success, data:", data);
-    };
-    $scope.onDropComplete = function(data, evt) {
-        console.log("drop success, data:", data);
-    };
+controllers.controller('ToolDataController', function($scope) {
     //https://github.com/fatlinesofcode/ngDraggable
+    $scope.centerAnchor = true;
+    $scope.toggleCenterAnchor = function() {
+        $scope.centerAnchor = !$scope.centerAnchor;
+    };
     $scope.draggableObjects = [
         {
             "id": "testID1"
@@ -79,6 +77,24 @@ controllers.controller('ToolDataController', function($scope, TreeListService, s
             "id": "testID2"
         }
     ];
+
+    $scope.droppedObjects1 = [];
+
+    $scope.onDropComplete1 = function(data, evt) {
+        var index = $scope.droppedObjects1.indexOf(data);
+        if (index === -1)
+            $scope.droppedObjects1.push(data);
+    };
+    $scope.onDragSuccess1 = function(data, evt) {
+        console.log("133", "$scope", "onDragSuccess1", "", evt);
+        var index = $scope.droppedObjects1.indexOf(data);
+        if (index > -1) {
+            $scope.droppedObjects1.splice(index, 1);
+        }
+    };
+    var inArray = function(array, obj) {
+        var index = array.indexOf(obj);
+    }
 });
 
 controllers.controller('DataTreeController', function($scope, DataTreeService, sharedData) {

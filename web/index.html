@@ -129,6 +129,21 @@
                                         <li>Node Name: {{selectedNode.name}}</li>
                                         <li># of Children: {{selectedNode.childrenCt}}</li>
                                     </ul>
+
+                                    <ul class="draggable-objects">
+                                        <li ng-repeat="obj in draggableObjects" >
+                                            <div ng-drag="true" ng-drag-data="obj"> {{obj.id}} </div>
+                                        </li>
+                                    </ul>
+                                    <hr/>
+                                    <div ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
+                                        <span class="bin">Drop area #1</span>
+                                        <div ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}">
+                                            {{obj.id}}
+                                        </div>
+                                    </div>
+
+
                                     <ul>    
                                         <li ng-repeat="obj in draggableObjects">
                                             <div ng-drag="true" ng-drag-data="obj" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">{{obj.id}}</div>
@@ -139,7 +154,11 @@
 
                                 <div class="col-md-6 pull-right">
                                     <div class="col-md-12">Data Set
-                                        <div class="bin" ng-drop="true" ng-drop-success="onDropComplete($data,$event)"> </div>
+                                        <div class="bin" ng-drop="true" ng-drop-success="onDropComplete1($data,$event)"> 
+                                            <div ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}">
+                                                {{obj.name}}
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-12">
                                         <h3>Parameters</h3> 
@@ -147,7 +166,7 @@
                                         <p>{{parameter}}</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> <!-- END ToolDataController -->
                         </div>
 
 
