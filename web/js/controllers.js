@@ -17,8 +17,30 @@ controllers.controller('GlobalController', function($scope) { //pass Tree factor
         "format": []
     };
 
-    $scope.dataTree = {
-        "id": ""
+    $scope.dataTreeSelectedNode = {
+        "id": "",
+        "dataSetId": "",
+        "files": []
+    };
+
+    /*
+     * 
+     * GLOBAL DRAG AND DROP CONTROLLER 
+     * 
+     */
+    $scope.droppedObjects1 = [];
+
+    $scope.onDropComplete1 = function(data, evt) {
+        var index = $scope.droppedObjects1.indexOf(data);
+        if (index === -1)
+            $scope.droppedObjects1.push(data);
+    };
+    $scope.onDragSuccess1 = function(data, evt) {
+        console.log("133", "$scope", "onDragSuccess1", "", evt);
+        var index = $scope.droppedObjects1.indexOf(data);
+        if (index > -1) {
+            $scope.droppedObjects1.splice(index, 1);
+        }
     };
 });
 
@@ -65,6 +87,7 @@ controllers.controller('ToolTreeController', function($scope, TreeListService, s
 
 controllers.controller('ToolDataController', function($scope) {
     //https://github.com/fatlinesofcode/ngDraggable
+
     $scope.centerAnchor = true;
     $scope.toggleCenterAnchor = function() {
         $scope.centerAnchor = !$scope.centerAnchor;
@@ -103,12 +126,22 @@ controllers.controller('DataTreeController', function($scope, DataTreeService, s
         $scope.toolId = sharedData.getToolId();
     });
 
-    $scope.$watch('dataToolTree.currentNode', function() {
+    $scope.$watch('dataToolTree.currentNode', function() { //watch the $scope.currentNode on the datasetTree 
         if ($scope.dataToolTree && angular.isObject($scope.dataToolTree.currentNode)) {
-            $scope.dataTree.id = $scope.dataToolTree.currentNode.id;
+            $scope.dataTreeSelectedNode.id = $scope.dataToolTree.currentNode.id;
+            if ($scope.dataToolTree.currentNode.dataSetId) { //is a dataset, not a parent
+                alert('Found Dataset');
+                $scope.dataTreeSelectedNode.dataSetId = $scope.dataToolTree.currentNode.dataSetId;
+                var files = [];
+                files = $scope.dataToolTree.currentNode.files;
+                alert(files.length);
+                files.forEach(function(file) {
+                    $scope.dataTreeSelectedNode.files.push(file);
+                }); //end forEach
+                alert($scope.dataTreeSelectedNode.files.length);
+            } //end if dataSet 
         }
         ;
-        ///HOW TO GET $SCOPE.CURRENTNODE from the second dataTree????????  Two directives, one for each tree.  Two scopes....how to talk with directives
         //http://seanhess.github.io/2013/10/14/angularjs-directive-design.html 
     }); //End currentNode $watch
 });
@@ -117,6 +150,9 @@ controllers.controller('SimilarToolController', function($scope, SimilarToolServ
     SimilarToolService.success(function(data) {
         $scope.similarToolList = data;
     });
+
+
+
     $scope.showTools = function(tool) {
         if ($scope.toolInputs.format.length) {
             var inputArray = [];
@@ -124,6 +160,7 @@ controllers.controller('SimilarToolController', function($scope, SimilarToolServ
 
             inputArray.forEach(function(input) {
                 if (input === tool.input) { //if the tool input is equal to the input of the tool in similarToolList
+                    console.log(input.toString());
                     return tool.input;
                 }
                 ;

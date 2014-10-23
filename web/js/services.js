@@ -14,29 +14,39 @@ sharedServices.factory('DataTreeService', function($http) {
 
 
 sharedServices.service('sharedData', function() {
-    var toolId = {
-        "id":""
-    };
-    var objectValue = {
-        data: 'test object value'
+    var sharedModel = {
+        value: "Initial Value"
     };
 
-    return {
-        getToolId: function(){
-            return toolId;
-        },
-        setToolId: function(id){
-            toolId.id = id;
-        },
-        getString: function() {
-            return stringValue;
-        },
-        setString: function(value) {
-            stringValue = value;
-        },
-        getObject: function() {
-            return objectValue;
-        }
-    }
+    sharedModel.updateValue = function (value) {
+        sharedModel.value = value;
+    };
+    return sharedModel;
+
+
+//    var toolId = {
+//        "id": ""
+//    };
+//    var objectValue = {
+//        data: 'test object value'
+//    };
+//
+//    return {
+//        getToolId: function() {
+//            return toolId;
+//        },
+//        setToolId: function(id) {
+//            toolId.id = id;
+//        },
+//        getString: function() {
+//            return stringValue;
+//        },
+//        setString: function(value) {
+//            stringValue = value;
+//        },
+//        getObject: function() {
+//            return objectValue;
+//        }
+//    }
 });
 

@@ -69,16 +69,24 @@
                             </div>
                             <hr class="small"></hr>
 
-                            <div ng-repeat="tool in similarToolList">
-                                <div>{{showTools(tool)}}</div>
-                            </div>
-                            <hr class="small"></hr>
+                            <h2><u>Similar Tools</u></h2>
                             <ul>
-                                <li ng-repeat="tool in similarToolList" ng-if="tool.input === toolInputs.format[0] || tool.input === toolInputs.format[1] || tool.input === toolInputs.format[2]">{{tool.toolId}}
+                                <li ng-repeat="tool in similarToolList" ng-drag="true" ng-drag-data="tool" ng-if="tool.input === toolInputs.format[0] || tool.input === toolInputs.format[1] || tool.input === toolInputs.format[2]">{{tool.toolId}}
                                     type={{tool.input}}
                                     <img ng-src="{{tool.imageUrl}}">
                                 </li>
                             </ul>
+
+                            <div ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
+                                <div class="bin">Drop area #1</div>
+                                <div ng-repeat="tool in droppedObjects1" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}">
+                                    {{tool.toolId}} - {{tool.input}}
+                                    <img ng-src="{{tool.imageUrl}}">
+                                </div>
+                            </div>
+
+                            <p>Base Controller Value: {{model.value}}</p>
+                            <button ng-click="updateValue('Value updated from Base')">Update In Base</button>
                         </div>
                     </div>
 
@@ -130,18 +138,8 @@
                                         <li># of Children: {{selectedNode.childrenCt}}</li>
                                     </ul>
 
-                                    <ul class="draggable-objects">
-                                        <li ng-repeat="obj in draggableObjects" >
-                                            <div ng-drag="true" ng-drag-data="obj"> {{obj.id}} </div>
-                                        </li>
-                                    </ul>
                                     <hr/>
-                                    <div ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
-                                        <span class="bin">Drop area #1</span>
-                                        <div ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}">
-                                            {{obj.id}}
-                                        </div>
-                                    </div>
+
 
 
                                     <ul>    
@@ -154,9 +152,10 @@
 
                                 <div class="col-md-6 pull-right">
                                     <div class="col-md-12">Data Set
-                                        <div class="bin" ng-drop="true" ng-drop-success="onDropComplete1($data,$event)"> 
+                                        <div ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
+                                            <div class="bin">Drop area #1</div>
                                             <div ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}">
-                                                {{obj.name}}
+                                                {{obj.id}}
                                             </div>
                                         </div>
                                     </div>
@@ -201,63 +200,68 @@
                                 data-node-children="children" 
                                 >
                             </div>
-
-                        </div>
-
-                    </div> <!-- END DATA TREE COLUMN -->
-                </div> <!-- End row col-12 -->
-            </div> <!-- END TOP ROW -->
-
-            <!--******************************************************************************************
-                                        PREVIOUS/ NEXT TOOL SECTION
-                ******************************************************************************************
-            -->
-            <div class="row">
-                <div class="col-md-12" ng-show="selectedNode.isTool" ng-controller="PrevNextToolController">
-                    <h3>Prev/Next</h3>
-
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Previous Tools</h3>
+                            <div  style="margin:10px 0 30px 0; padding:10px; background-color:#EEEEEE; border-radius:5px; font:12px Tahoma;">
+                                <p>Node Id: {{dataTreeSelectedNode.id}}</p>
+                                <p>Dataset Id: {{dataTreeSelectedNode.dataSetId}}</p>
+                                <ul>
+                                    <li ng-repeat="file in dataTreeSelectedNode.files">FileId: {{file.fileId}}  Format: {{file.fileFormat}}</li>
+                                </ul>
                             </div>
-                            <div class="panel-body">
 
-                                <h4>ToolId: {{selectedNode.id}}</h4>
+                        </div> <!-- END DATA TREE COLUMN -->
+                    </div> <!-- End row col-12 -->
+                </div> <!-- END TOP ROW -->
 
-                                <h4>Tool Outputs: {{toolOutputs.length}}</h4>
+                <!--******************************************************************************************
+                                            PREVIOUS/ NEXT TOOL SECTION
+                    ******************************************************************************************
+                -->
+                <div class="row">
+                    <div class="col-md-12" ng-show="selectedNode.isTool" ng-controller="PrevNextToolController">
+                        <h3>Prev/Next</h3>
+
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Previous Tools</h3>
+                                </div>
+                                <div class="panel-body">
+
+                                    <h4>ToolId: {{selectedNode.id}}</h4>
+
+                                    <h4>Tool Outputs: {{toolOutputs.length}}</h4>
+                                </div>
                             </div>
-                        </div>
-                    </div>  <!-- END PREV TOOLS -->
-                    <div class="col-md-6">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Next Tools
-                                </h3>
+                        </div>  <!-- END PREV TOOLS -->
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Next Tools
+                                    </h3>
+                                </div>
+                                <div class="panel-body">
+                                    <h4>ToolId: {{selectedNode.id}}</h4>
+                                </div>
                             </div>
-                            <div class="panel-body">
-                                <h4>ToolId: {{selectedNode.id}}</h4>
-                            </div>
-                        </div>
-                    </div> <!-- END NEXT TOOLS -->
-                </div> <!-- END COL-12 -->
-            </div> <!-- PREV/NEXT ROW -->
+                        </div> <!-- END NEXT TOOLS -->
+                    </div> <!-- END COL-12 -->
+                </div> <!-- PREV/NEXT ROW -->
 
-        </div> <!-- END MAIN CONTAINER - GlobalController -->
+            </div> <!-- END MAIN CONTAINER - GlobalController -->
 
 
-        <!-- INCLUDED JAVASCRIPT FILES -->
-        <!-- jQuery -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script> 
-        <script src="bootstrap/js/bootstrap.min.js"></script>
-        <!-- Angular -->
-        <script type="text/javascript" src="angular/angular.js"></script>
-        <!-- INCLUDED JS -->
-        <script type="text/javascript" src="js/app.js"></script>
-        <script type="text/javascript" src="js/services.js"></script>
-        <script type="text/javascript" src="js/controllers.js"></script>
-        <script type="text/javascript" src="js/directives.js"></script>
-        <script type="text/javascript" src="js/ngDraggable.js"></script>
+            <!-- INCLUDED JAVASCRIPT FILES -->
+            <!-- jQuery -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script> 
+            <script src="bootstrap/js/bootstrap.min.js"></script>
+            <!-- Angular -->
+            <script type="text/javascript" src="angular/angular.js"></script>
+            <!-- INCLUDED JS -->
+            <script type="text/javascript" src="js/app.js"></script>
+            <script type="text/javascript" src="js/services.js"></script>
+            <script type="text/javascript" src="js/controllers.js"></script>
+            <script type="text/javascript" src="js/directives.js"></script>
+            <script type="text/javascript" src="js/ngDraggable.js"></script>
     </body>
 </html>
