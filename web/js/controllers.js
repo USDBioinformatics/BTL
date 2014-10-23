@@ -151,8 +151,6 @@ controllers.controller('SimilarToolController', function($scope, SimilarToolServ
         $scope.similarToolList = data;
     });
 
-
-
     $scope.showTools = function(tool) {
         if ($scope.toolInputs.format.length) {
             var inputArray = [];
