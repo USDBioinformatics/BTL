@@ -62,28 +62,28 @@
                             <h4>Node Id:{{selectedNode.id}}</h4>
                             <h4>Node Name: {{selectedNode.name}}</h4>
                             <div ng-show="selectedNode.isTool">
-                                <h2><u>Tool Inputs</u></h2>
+                                <h2><u>Selected Tool Inputs</u></h2>
                                 <ul>
                                     <li ng-repeat="format in toolInputs.format">{{format}}</li>
                                 </ul>
                             </div>
                             <hr class="small"></hr>
 
-                            <h2><u>Similar Tools</u></h2>
+                            <h2><u>Similar Tools(Draggable)</u></h2>
                             <ul>
-                                <li ng-repeat="tool in similarToolList" ng-drag="true" ng-drag-data="tool" ng-if="tool.input === toolInputs.format[0] || tool.input === toolInputs.format[1] || tool.input === toolInputs.format[2]">{{tool.toolId}}
-                                    type={{tool.input}}
+                                <li ng-repeat="tool in draggableObjects1" ng-drag="true" ng-drag-data="tool" ng-drag-success="onDragSuccess1($data,$event)" ng-if="tool.input === toolInputs.format[0] || tool.input === toolInputs.format[1] || tool.input === toolInputs.format[2]">{{tool.toolId}}
+                                    format={{tool.input}}
                                     <img ng-src="{{tool.imageUrl}}">
                                 </li>
                             </ul>
 
-                            <div ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
-                                <div class="bin">Drop area #1</div>
-                                <div ng-repeat="tool in droppedObjects1" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}">
-                                    {{tool.toolId}} - {{tool.input}}
-                                    <img ng-src="{{tool.imageUrl}}">
-                                </div>
-                            </div>
+                            <!--                            <div ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
+                                                            <div class="bin">Drop area #1</div>
+                                                            <div ng-repeat="tool in droppedObjects1" ng-drag="true" ng-drag-data="tool" ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}">
+                                                                {{tool.toolId}} - {{tool.input}}
+                                                                <img ng-src="{{tool.imageUrl}}">
+                                                            </div>
+                                                        </div>-->
 
                             <p>Base Controller Value: {{model.value}}</p>
                             <button ng-click="updateValue('Value updated from Base')">Update In Base</button>
@@ -136,32 +136,26 @@
                                         <li>Selected Node ID: {{selectedNode.id}}</li>
                                         <li>Node Name: {{selectedNode.name}}</li>
                                         <li># of Children: {{selectedNode.childrenCt}}</li>
-                                    </ul>
-
-                                    <hr/>
-
-
-
-                                    <ul>    
-                                        <li ng-repeat="obj in draggableObjects">
-                                            <div ng-drag="true" ng-drag-data="obj" style="margin:10px 0 10px 0; padding:10px; background-color:#ff0; border-radius:5px; font:12px Tahoma;">{{obj.id}}</div>
-                                        </li>
+                                        <li>Params: {{toolParameters[0].value}}</li>
                                     </ul>
                                 </div> <!-- END TOP ROW -->
 
 
                                 <div class="col-md-6 pull-right">
-                                    <div class="col-md-12">Data Set
+                                    <div class="col-md-12"><h2>Droppable</h2>
                                         <div ng-drop="true" ng-drop-success="onDropComplete1($data,$event)">
-                                            <div class="bin">Drop area #1</div>
-                                            <div ng-repeat="obj in droppedObjects1" ng-drag="true" ng-drag-data="obj" ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}">
-                                                {{obj.id}}
+                                            <div class="bin">Drop Tool Here</div>
+                                            <div ng-repeat="tool in droppedObjects1" ng-drag="true" ng-drag-data="tool" ng-drag-success="onDragSuccess1($data,$event)" ng-center-anchor="{{centerAnchor}}">
+                                                {{tool.toolId}} - <img ng-src="{{tool.imageUrl}}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <h3>Parameters</h3> 
                                         <input type="text" ng-model="parameter" placeholder="Parameter"/>
+                                        <ul>
+                                            <li ng-repeat="parameter in toolParameters">Param Value: {{parameter.value}}</li>
+                                        </ul>
                                         <p>{{parameter}}</p>
                                     </div>
                                 </div>
@@ -228,8 +222,14 @@
                                 <div class="panel-body">
 
                                     <h4>ToolId: {{selectedNode.id}}</h4>
-
-                                    <h4>Tool Outputs: {{toolOutputs.length}}</h4>
+                                    <h2>Selected Tool Inputs:</h2>
+                                    <ul>
+                                        <li ng-repeat="format in toolInputs.format">{{format}}</li>
+                                    </ul>
+                                    <h2>Selected Tool Outputs:</h2>
+                                    <ul>
+                                        <li ng-repeat="format in toolOutputs.format">{{format}}</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>  <!-- END PREV TOOLS -->
@@ -247,21 +247,21 @@
                     </div> <!-- END COL-12 -->
                 </div> <!-- PREV/NEXT ROW -->
 
-            </div> <!-- END MAIN CONTAINER - GlobalController -->
+            </div> 
 
-
-            <!-- INCLUDED JAVASCRIPT FILES -->
-            <!-- jQuery -->
-            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-            <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script> 
-            <script src="bootstrap/js/bootstrap.min.js"></script>
-            <!-- Angular -->
-            <script type="text/javascript" src="angular/angular.js"></script>
-            <!-- INCLUDED JS -->
-            <script type="text/javascript" src="js/app.js"></script>
-            <script type="text/javascript" src="js/services.js"></script>
-            <script type="text/javascript" src="js/controllers.js"></script>
-            <script type="text/javascript" src="js/directives.js"></script>
-            <script type="text/javascript" src="js/ngDraggable.js"></script>
+        </div><!-- END MAIN CONTAINER - GlobalController -->
+        <!-- INCLUDED JAVASCRIPT FILES -->
+        <!-- jQuery -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script> 
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <!-- Angular -->
+        <script type="text/javascript" src="angular/angular.js"></script>
+        <!-- INCLUDED JS -->
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/services.js"></script>
+        <script type="text/javascript" src="js/controllers.js"></script>
+        <script type="text/javascript" src="js/directives.js"></script>
+        <script type="text/javascript" src="js/ngDraggable.js"></script>
     </body>
 </html>

@@ -121,7 +121,53 @@
                                                 "outputName": "Test Output 2",
                                                 "format": ".fasta"
                                             }
+                                        ],
+										"parameters": [
+                                    {
+                                        "name": "Output File Name",
+                                        "value": "outputFile2",
+                                        "type": "Bets",
+                                        "label": "label1",
+                                        "required": "no",
+                                        "default": "yes",
+                                        "validator": "validator",
+                                        "visible": "yes",
+                                        "description": "test description",
+                                        "constraint": [
+                                            {
+                                                "label": "Ontology",
+                                                "value": "x"
+                                            },
+                                            {
+                                                "label": "Ontology",
+                                                "value": "www.com.com"
+                                            }
+											
                                         ]
+                                    },
+									{
+                                        "name": "Output Format",
+                                        "value": "clustal",
+                                        "type": "Bets",
+                                        "label": "label1",
+                                        "required": "no",
+                                        "default": "yes",
+                                        "validator": "validator",
+                                        "visible": "yes",
+                                        "description": "test description",
+                                        "constraint": [
+                                            {
+                                                "label": "Ontology",
+                                                "value": "x"
+                                            },
+                                            {
+                                                "label": "Ontology",
+                                                "value": "www.com.com"
+                                            }
+										]
+									}
+									
+                                ]
                                     }
                                 ]
                             }

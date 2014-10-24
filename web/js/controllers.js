@@ -1,6 +1,6 @@
 var controllers = angular.module("Controllers", []);
 
-controllers.controller('GlobalController', function($scope) { //pass Tree factory
+controllers.controller('GlobalController', function($scope, SimilarToolService) { //pass Tree factory
     $scope.selectedNode = {
         "id": "",
         "name": "",
@@ -17,6 +17,8 @@ controllers.controller('GlobalController', function($scope) { //pass Tree factor
         "format": []
     };
 
+    $scope.toolParameters = [];
+
     $scope.dataTreeSelectedNode = {
         "id": "",
         "dataSetId": "",
@@ -28,6 +30,11 @@ controllers.controller('GlobalController', function($scope) { //pass Tree factor
      * GLOBAL DRAG AND DROP CONTROLLER 
      * 
      */
+    $scope.draggableObjects1 = []; //global draggable ojects
+
+    SimilarToolService.success(function(data) {
+        $scope.draggableObjects1 = data; //set draggable objects to the similar tools list 
+    });
     $scope.droppedObjects1 = [];
 
     $scope.onDropComplete1 = function(data, evt) {
@@ -52,7 +59,9 @@ controllers.controller('ToolTreeController', function($scope, TreeListService, s
         var curNode;
 
         if ($scope.toolTree && angular.isObject($scope.toolTree.currentNode)) {
-            $scope.toolInputs.format.length = 0; //reset inputs array
+
+            $scope.droppedObjects1.length = 0;
+
 
             curNode = $scope.toolTree.currentNode; //set the selected tool tree node to a local variable
             $scope.selectedNode.id = curNode.id; //
@@ -62,6 +71,9 @@ controllers.controller('ToolTreeController', function($scope, TreeListService, s
             }
             //if currentNode is a tool
             if (curNode.isTool) {
+                $scope.toolInputs.format.length = 0; //reset inputs array
+                $scope.toolParameters.length = 0; //reset parameters array
+                $scope.toolOutputs.length = 0;
                 var inputCt = curNode.inputs.length;
                 if (inputCt === 0)
                     alert('TOOL HAS NO INPUTS');
@@ -75,7 +87,13 @@ controllers.controller('ToolTreeController', function($scope, TreeListService, s
                 if (outputCt > 0) {
                     for (i = 0; i < outputCt; i++) {
                         $scope.toolOutputs.format.push(curNode.outputs[i].format);
-                        alert('tool output= ' + curNode.outputs[i].format);
+                    }
+                }
+                //get parameters
+                var paramCt = curNode.parameters.length;
+                if (paramCt > 0) {
+                    for (i = 0; i < paramCt; i++) {
+                        $scope.toolParameters.push(curNode.parameters[i])
                     }
                 }
             } else {
@@ -88,42 +106,41 @@ controllers.controller('ToolTreeController', function($scope, TreeListService, s
 controllers.controller('ToolDataController', function($scope) {
     //https://github.com/fatlinesofcode/ngDraggable
 
-    $scope.centerAnchor = true;
-    $scope.toggleCenterAnchor = function() {
-        $scope.centerAnchor = !$scope.centerAnchor;
-    };
-    $scope.draggableObjects = [
-        {
-            "id": "testID1"
-        },
-        {
-            "id": "testID2"
-        }
-    ];
-
-    $scope.droppedObjects1 = [];
-
-    $scope.onDropComplete1 = function(data, evt) {
-        var index = $scope.droppedObjects1.indexOf(data);
-        if (index === -1)
-            $scope.droppedObjects1.push(data);
-    };
-    $scope.onDragSuccess1 = function(data, evt) {
-        console.log("133", "$scope", "onDragSuccess1", "", evt);
-        var index = $scope.droppedObjects1.indexOf(data);
-        if (index > -1) {
-            $scope.droppedObjects1.splice(index, 1);
-        }
-    };
-    var inArray = function(array, obj) {
-        var index = array.indexOf(obj);
-    }
+//    $scope.centerAnchor = true;
+//    $scope.toggleCenterAnchor = function() {
+//        $scope.centerAnchor = !$scope.centerAnchor;
+//    };
+//    $scope.draggableObjects = [
+//        {
+//            "id": "testID1"
+//        },
+//        {
+//            "id": "testID2"
+//        }
+//    ];
+//
+//    $scope.droppedObjects1 = [];
+//
+//    $scope.onDropComplete1 = function(data, evt) {
+//        var index = $scope.droppedObjects1.indexOf(data);
+//        if (index === -1)
+//            $scope.droppedObjects1.push(data);
+//    };
+//    $scope.onDragSuccess1 = function(data, evt) {
+//        console.log("133", "$scope", "onDragSuccess1", "", evt);
+//        var index = $scope.droppedObjects1.indexOf(data);
+//        if (index > -1) {
+//            $scope.droppedObjects1.splice(index, 1);
+//        }
+//    };
+//    var inArray = function(array, obj) {
+//        var index = array.indexOf(obj);
+//    }
 });
 
 controllers.controller('DataTreeController', function($scope, DataTreeService, sharedData) {
     DataTreeService.success(function(data) {
         $scope.dataTree = data;
-        $scope.toolId = sharedData.getToolId();
     });
 
     $scope.$watch('dataToolTree.currentNode', function() { //watch the $scope.currentNode on the datasetTree 
@@ -134,11 +151,9 @@ controllers.controller('DataTreeController', function($scope, DataTreeService, s
                 $scope.dataTreeSelectedNode.dataSetId = $scope.dataToolTree.currentNode.dataSetId;
                 var files = [];
                 files = $scope.dataToolTree.currentNode.files;
-                alert(files.length);
                 files.forEach(function(file) {
                     $scope.dataTreeSelectedNode.files.push(file);
                 }); //end forEach
-                alert($scope.dataTreeSelectedNode.files.length);
             } //end if dataSet 
         }
         ;
