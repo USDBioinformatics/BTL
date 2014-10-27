@@ -59,10 +59,7 @@ controllers.controller('ToolTreeController', function($scope, TreeListService, s
         var curNode;
 
         if ($scope.toolTree && angular.isObject($scope.toolTree.currentNode)) {
-
             $scope.droppedObjects1.length = 0;
-
-
             curNode = $scope.toolTree.currentNode; //set the selected tool tree node to a local variable
             $scope.selectedNode.id = curNode.id; //
             $scope.selectedNode.name = curNode.roleName;
@@ -174,11 +171,12 @@ controllers.controller('SimilarToolController', function($scope, SimilarToolServ
             inputArray.forEach(function(input) {
                 if (input === tool.input) { //if the tool input is equal to the input of the tool in similarToolList
                     console.log(input.toString());
-                    return tool.input;
+                    return true;
                 }
                 ;
             });
         }
+        return false;
     }; //end showTools()
 });
 
