@@ -5,7 +5,13 @@ sharedServices.factory('TreeListService', function($http) {
 });
 
 sharedServices.factory('SimilarToolService', function($http) {
-    return $http.get("./input_files/similarTools.json")
+    return $http.get("./input_files/similarTools.json");
+});
+
+
+
+sharedServices.factory('NewSimTools', function($http){
+    return $http.get(".input_files/newSimTools.json");
 });
 
 sharedServices.factory('DataTreeService', function($http) {

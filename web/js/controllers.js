@@ -180,8 +180,10 @@ controllers.controller('SimilarToolController', function($scope, SimilarToolServ
     }; //end showTools()
 });
 
-controllers.controller('PrevNextToolController', function($scope, sharedData) { //data is injected from app.factory 'Data' service
-
+controllers.controller('PrevNextToolController', function($scope, NewSimTools) { //data is injected from app.factory 'Data' service
+    NewSimTools.success(function(data){
+       $scope.newSimTools = data; 
+    });
     $scope.$watch('toolOutputs.format', function() {
 //        alert(toolOuptus.format.length);
 //        alert('OUTPUT CHANGED');
