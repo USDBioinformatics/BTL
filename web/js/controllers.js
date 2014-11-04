@@ -1,11 +1,12 @@
 var controllers = angular.module("Controllers", []);
 
-controllers.controller('GlobalController', function($scope, SimilarToolService) { //pass Tree factory
+controllers.controller('GlobalController', function($scope, SimilarToolService, NewSimTools) { //pass Tree factory
     $scope.selectedNode = {
         "id": "",
         "name": "",
         "childrenCt": "",
-        "parent": ""
+        "parent": "",
+        "imageUrl" : ""
 
     };
 
@@ -39,7 +40,8 @@ controllers.controller('GlobalController', function($scope, SimilarToolService) 
 
     $scope.onDropComplete1 = function(data, evt) {
         var index = $scope.droppedObjects1.indexOf(data);
-        if (index === -1)
+        if (index === -1 && ($scope.droppedObjects1.length > 0))
+            $scope.droppedObjects1.pop();
             $scope.droppedObjects1.push(data);
     };
     $scope.onDragSuccess1 = function(data, evt) {
@@ -51,7 +53,7 @@ controllers.controller('GlobalController', function($scope, SimilarToolService) 
     };
 });
 
-controllers.controller('ToolTreeController', function($scope, TreeListService, sharedData) { //pass Tree factory
+controllers.controller('ToolTreeController', function($scope, TreeListService) { //pass Tree factory
     TreeListService.success(function(data) {
         $scope.treeList = data;
     });
@@ -61,7 +63,7 @@ controllers.controller('ToolTreeController', function($scope, TreeListService, s
         if ($scope.toolTree && angular.isObject($scope.toolTree.currentNode)) {
             $scope.droppedObjects1.length = 0;
             curNode = $scope.toolTree.currentNode; //set the selected tool tree node to a local variable
-            $scope.selectedNode.id = curNode.id; //
+            $scope.selectedNode.id = curNode.id;
             $scope.selectedNode.name = curNode.roleName;
             if (curNode.children) { //if there are children, set them to the $scope.selectedNode object.  Tools do NOT have children.
                 $scope.selectedNode.childrenCt = curNode.children.length;
@@ -71,6 +73,10 @@ controllers.controller('ToolTreeController', function($scope, TreeListService, s
                 $scope.toolInputs.format.length = 0; //reset inputs array
                 $scope.toolParameters.length = 0; //reset parameters array
                 $scope.toolOutputs.length = 0;
+                $scope.selectedNode.imageUrl = curNode.imageUrl;
+                
+                //add current tool to draggableObjects []
+                $scope.draggableObjects1.push(curNode);
                 var inputCt = curNode.inputs.length;
                 if (inputCt === 0)
                     alert('TOOL HAS NO INPUTS');
@@ -103,36 +109,6 @@ controllers.controller('ToolTreeController', function($scope, TreeListService, s
 controllers.controller('ToolDataController', function($scope) {
     //https://github.com/fatlinesofcode/ngDraggable
 
-//    $scope.centerAnchor = true;
-//    $scope.toggleCenterAnchor = function() {
-//        $scope.centerAnchor = !$scope.centerAnchor;
-//    };
-//    $scope.draggableObjects = [
-//        {
-//            "id": "testID1"
-//        },
-//        {
-//            "id": "testID2"
-//        }
-//    ];
-//
-//    $scope.droppedObjects1 = [];
-//
-//    $scope.onDropComplete1 = function(data, evt) {
-//        var index = $scope.droppedObjects1.indexOf(data);
-//        if (index === -1)
-//            $scope.droppedObjects1.push(data);
-//    };
-//    $scope.onDragSuccess1 = function(data, evt) {
-//        console.log("133", "$scope", "onDragSuccess1", "", evt);
-//        var index = $scope.droppedObjects1.indexOf(data);
-//        if (index > -1) {
-//            $scope.droppedObjects1.splice(index, 1);
-//        }
-//    };
-//    var inArray = function(array, obj) {
-//        var index = array.indexOf(obj);
-//    }
 });
 
 controllers.controller('DataTreeController', function($scope, DataTreeService, sharedData) {
