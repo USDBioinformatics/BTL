@@ -59,19 +59,6 @@
                             <h3 class="panel-title">Similar Tools</h3>
                         </div>
                         <div class="panel-body">
-                            <h2><u>Selected Tool</u></h2>
-                            <h4>Node Id:{{selectedNode.id}}</h4>
-                            <h4>Node Name: {{selectedNode.name}}</h4>
-                            <div ng-show="selectedNode.isTool">
-                                <h2><u>Selected Tool Inputs</u></h2>
-                                <ul>
-                                    <li ng-repeat="format in toolInputs.format">{{format}}</li>
-                                </ul>
-                            </div>
-                            <h2><u>Selected Tool Outputs:</u></h2>
-                            <ul>
-                                <li ng-repeat="format in toolOutputs.format">{{format}}</li>
-                            </ul>
                             <hr class="small"></hr>
 
                             <h2><u>Similar Tools(Draggable)</u></h2>
@@ -143,6 +130,16 @@
                                         <li># of Children: {{selectedNode.childrenCt}}</li>
                                         <li>Params: {{toolParameters[0].value}}</li>
                                     </ul>
+                                    <div ng-show="selectedNode.isTool">
+                                        <h2><u>Selected Tool Inputs</u></h2>
+                                        <ul>
+                                            <li ng-repeat="format in toolInputs.format">{{format}}</li>
+                                        </ul>
+                                        <h2><u>Selected Tool Outputs:</u></h2>
+                                        <ul>
+                                            <li ng-repeat="format in toolOutputs.format">{{format}}</li>
+                                        </ul>
+                                    </div>
                                 </div> <!-- END TOP ROW -->
 
 
@@ -219,23 +216,18 @@
                 <div class="row">
                     <div class="col-md-12" ng-show="selectedNode.isTool" ng-controller="PrevNextToolController">
                         <h3>Prev/Next</h3>
-                        <h4>{{newSimTools[0].toolId}}</h4>
                         <div class="col-md-6">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <h3 class="panel-title">Previous Tools</h3>
                                 </div>
                                 <div class="panel-body">
-
-                                    <h4>ToolId: {{selectedNode.id}}</h4>
-                                    <h4>{{selectedNode.id}}</h4>
-                                    <ul>
-                                        <li ng-repeat="format in toolInputs.format">{{format}}</li>
-                                    </ul>
-                                    <h2>Selected Tool Outputs:</h2>
-                                    <ul>
-                                        <li ng-repeat="format in toolOutputs.format">{{format}}</li>
-                                    </ul>
+                                    <div ng-repeat="tool in newSimTools">
+                                        <div ng-repeat="prev in tool.previousTools">
+                                            {{prev}}
+                                            <img ng-src="{{tool.imageUrl}}">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>  <!-- END PREV TOOLS -->
@@ -245,16 +237,12 @@
                                     <h3 class="panel-title">Next Tools</h3>
                                 </div>
                                 <div class="panel-body">
-
-                                    <h4>ToolId: {{selectedNode.id}}</h4>
-                                    <h2>Selected Tool Inputs:</h2>
-                                    <ul>
-                                        <li ng-repeat="format in toolInputs.format">{{format}}</li>
-                                    </ul>
-                                    <h2>Selected Tool Outputs:</h2>
-                                    <ul>
-                                        <li ng-repeat="format in toolOutputs.format">{{format}}</li>
-                                    </ul>
+                                    <div ng-repeat="tool in newSimTools">
+                                        <div ng-repeat="next in tool.nextTools">
+                                            {{next}}
+                                            <img ng-src="{{tool.imageUrl}}">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div> <!-- END NEXT TOOLS -->

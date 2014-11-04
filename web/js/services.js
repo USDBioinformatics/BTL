@@ -11,11 +11,11 @@ sharedServices.factory('SimilarToolService', function($http) {
 
 
 sharedServices.factory('NewSimTools', function($http){
-    return $http.get(".input_files/newSimTools.json");
+    return $http.get("./input_files/newSimTools.json");
 });
 
 sharedServices.factory('DataTreeService', function($http) {
-    return  $http.get("./input_files/dataTree.json")
+    return  $http.get("./input_files/dataTree.json");
 });
 
 
