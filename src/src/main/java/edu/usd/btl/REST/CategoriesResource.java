@@ -5,15 +5,19 @@
  */
 package edu.usd.btl.REST;
 
+import edu.usd.btl.ontology.BioPortalElement;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.Produces;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PUT;
 import javax.enterprise.context.RequestScoped;
+import edu.usd.btl.ontology.testFileRead;
+import java.util.ArrayList;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 /**
  * REST Web Service
@@ -32,15 +36,23 @@ public class CategoriesResource {
      */
     public CategoriesResource() {
     }
-
+    
+    testFileRead test = new edu.usd.btl.ontology.testFileRead();
+    
     /**
      * Retrieves representation of an instance of edu.usd.btl.REST.CategoriesResource
      * @return an instance of java.lang.String
      */
     @GET
     @Produces("application/json")
-    public String getJson() {
-        return "Categories";
+    public String getJson() throws Exception {
+        ArrayList<BioPortalElement> nodeList = test.readOntologyFile();
+        System.out.println("NodeList SIZE= " + nodeList.size());
+        BioPortalElement testElem = nodeList.get(0);
+        
+        ObjectMapper mapper = new ObjectMapper();
+        
+        return mapper.writeValueAsString(nodeList);
         //throw new UnsupportedOperationException();
     }
 
