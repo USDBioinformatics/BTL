@@ -42,13 +42,14 @@ public class CategoriesResource {
     /**
      * Retrieves representation of an instance of edu.usd.btl.REST.CategoriesResource
      * @return an instance of java.lang.String
+     * @throws java.lang.Exception
      */
     @GET
     @Produces("application/json")
     public String getJson() throws Exception {
         ArrayList<BioPortalElement> nodeList = test.readOntologyFile();
         System.out.println("NodeList SIZE= " + nodeList.size());
-        BioPortalElement testElem = nodeList.get(0);
+        //BioPortalElement testElem = nodeList.get(0);
         
         ObjectMapper mapper = new ObjectMapper();
         

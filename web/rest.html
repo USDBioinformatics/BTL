@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="BTL">
     <head>
         <title>BTL-DnD</title>
         <meta charset="UTF-8">
@@ -44,11 +44,26 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
-                    <h1>Welcome to Bio Tool Library</h1>
-                   <a href="tools.html" class="btn btn-primary btn-lg active" role="button">Search Tools</a>
+                <div class="col-md-12" ng-controller="RESTController">
+                    <p>{{restCategories}}</p>
+                    <h1>{{testRest}}</h1>
                 </div>
             </div>
         </div><!-- end container -->
+        
+        
+                <!-- INCLUDED JAVASCRIPT FILES -->
+        <!-- jQuery -->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script> 
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <!-- Angular -->
+        <script type="text/javascript" src="angular/angular.js"></script>
+        <!-- INCLUDED JS -->
+        <script type="text/javascript" src="js/app.js"></script>
+        <script type="text/javascript" src="js/services.js"></script>
+        <script type="text/javascript" src="js/controllers.js"></script>
+        <script type="text/javascript" src="js/directives.js"></script>
+        <script type="text/javascript" src="js/ngDraggable.js"></script>
     </body>
 </html>

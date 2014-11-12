@@ -18,6 +18,10 @@ sharedServices.factory('DataTreeService', function($http) {
     return  $http.get("./input_files/dataTree.json");
 });
 
+sharedServices.factory('RestServices', function($http) {
+    return  $http.get("http://localhost:8080/src/resources/categories");
+});
+
 
 sharedServices.service('sharedData', function() {
     var sharedModel = {

@@ -1,12 +1,12 @@
 var controllers = angular.module("Controllers", []);
 
-controllers.controller('GlobalController', function($scope, SimilarToolService, NewSimTools) { //pass Tree factory
+controllers.controller('GlobalController', function ($scope, SimilarToolService, NewSimTools) { //pass Tree factory
     $scope.selectedNode = {
         "id": "",
         "name": "",
         "childrenCt": "",
         "parent": "",
-        "imageUrl" : ""
+        "imageUrl": ""
 
     };
 
@@ -33,18 +33,18 @@ controllers.controller('GlobalController', function($scope, SimilarToolService, 
      */
     $scope.draggableObjects1 = []; //global draggable ojects
 
-    SimilarToolService.success(function(data) {
+    SimilarToolService.success(function (data) {
         $scope.draggableObjects1 = data; //set draggable objects to the similar tools list 
     });
     $scope.droppedObjects1 = [];
 
-    $scope.onDropComplete1 = function(data, evt) {
+    $scope.onDropComplete1 = function (data, evt) {
         var index = $scope.droppedObjects1.indexOf(data);
         if (index === -1 && ($scope.droppedObjects1.length > 0))
             $scope.droppedObjects1.pop();
-            $scope.droppedObjects1.push(data);
+        $scope.droppedObjects1.push(data);
     };
-    $scope.onDragSuccess1 = function(data, evt) {
+    $scope.onDragSuccess1 = function (data, evt) {
         console.log("133", "$scope", "onDragSuccess1", "", evt);
         var index = $scope.droppedObjects1.indexOf(data);
         if (index > -1) {
@@ -53,11 +53,11 @@ controllers.controller('GlobalController', function($scope, SimilarToolService, 
     };
 });
 
-controllers.controller('ToolTreeController', function($scope, TreeListService) { //pass Tree factory
-    TreeListService.success(function(data) {
+controllers.controller('ToolTreeController', function ($scope, TreeListService) { //pass Tree factory
+    TreeListService.success(function (data) {
         $scope.treeList = data;
     });
-    $scope.$watch('toolTree.currentNode', function() {
+    $scope.$watch('toolTree.currentNode', function () {
         var curNode;
 
         if ($scope.toolTree && angular.isObject($scope.toolTree.currentNode)) {
@@ -74,7 +74,7 @@ controllers.controller('ToolTreeController', function($scope, TreeListService) {
                 $scope.toolParameters.length = 0; //reset parameters array
                 $scope.toolOutputs.length = 0;
                 $scope.selectedNode.imageUrl = curNode.imageUrl;
-                
+
                 //add current tool to draggableObjects []
                 $scope.draggableObjects1.push(curNode);
                 var inputCt = curNode.inputs.length;
@@ -106,17 +106,17 @@ controllers.controller('ToolTreeController', function($scope, TreeListService) {
     }); //End currentNode $watch
 });
 
-controllers.controller('ToolDataController', function($scope) {
+controllers.controller('ToolDataController', function ($scope) {
     //https://github.com/fatlinesofcode/ngDraggable
 
 });
 
-controllers.controller('DataTreeController', function($scope, DataTreeService, sharedData) {
-    DataTreeService.success(function(data) {
+controllers.controller('DataTreeController', function ($scope, DataTreeService, sharedData) {
+    DataTreeService.success(function (data) {
         $scope.dataTree = data;
     });
 
-    $scope.$watch('dataToolTree.currentNode', function() { //watch the $scope.currentNode on the datasetTree 
+    $scope.$watch('dataToolTree.currentNode', function () { //watch the $scope.currentNode on the datasetTree 
         if ($scope.dataToolTree && angular.isObject($scope.dataToolTree.currentNode)) {
             $scope.dataTreeSelectedNode.id = $scope.dataToolTree.currentNode.id;
             if ($scope.dataToolTree.currentNode.dataSetId) { //is a dataset, not a parent
@@ -124,7 +124,7 @@ controllers.controller('DataTreeController', function($scope, DataTreeService, s
                 $scope.dataTreeSelectedNode.dataSetId = $scope.dataToolTree.currentNode.dataSetId;
                 var files = [];
                 files = $scope.dataToolTree.currentNode.files;
-                files.forEach(function(file) {
+                files.forEach(function (file) {
                     $scope.dataTreeSelectedNode.files.push(file);
                 }); //end forEach
             } //end if dataSet 
@@ -134,17 +134,17 @@ controllers.controller('DataTreeController', function($scope, DataTreeService, s
     }); //End currentNode $watch
 });
 
-controllers.controller('SimilarToolController', function($scope, SimilarToolService, sharedData) { //data is injected from app.factory 'Data' service
-    SimilarToolService.success(function(data) {
+controllers.controller('SimilarToolController', function ($scope, SimilarToolService, sharedData) { //data is injected from app.factory 'Data' service
+    SimilarToolService.success(function (data) {
         $scope.similarToolList = data;
     });
 
-    $scope.showTools = function(tool) {
+    $scope.showTools = function (tool) {
         if ($scope.toolInputs.format.length) {
             var inputArray = [];
             inputArray = $scope.toolInputs.format;
 
-            inputArray.forEach(function(input) {
+            inputArray.forEach(function (input) {
                 if (input === tool.input) { //if the tool input is equal to the input of the tool in similarToolList
                     console.log(input.toString());
                     return true;
@@ -156,12 +156,21 @@ controllers.controller('SimilarToolController', function($scope, SimilarToolServ
     }; //end showTools()
 });
 
-controllers.controller('PrevNextToolController', function($scope, NewSimTools) { //data is injected from app.factory 'Data' service
-    NewSimTools.success(function(data){
-       $scope.newSimTools = data; 
+controllers.controller('PrevNextToolController', function ($scope, NewSimTools) { //data is injected from app.factory 'Data' service
+    NewSimTools.success(function (data) {
+        $scope.newSimTools = data;
     });
-    $scope.$watch('toolOutputs.format', function() {
+    $scope.$watch('toolOutputs.format', function () {
 //        alert(toolOuptus.format.length);
 //        alert('OUTPUT CHANGED');
     });
+
+    controllers.controller('RESTController', function ($scope, RestServices) { //data is injected from app.factory 'Data' service
+        RestServices.success(function (data) {
+            $scope.restCategories = data;
+        });
+        
+        $scope.testRest = "Testing Rest Controller";
+    });
+
 });
