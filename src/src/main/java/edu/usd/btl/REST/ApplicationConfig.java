@@ -30,6 +30,8 @@ public class ApplicationConfig extends Application {
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(edu.usd.btl.REST.CategoriesResource.class);
+        resources.add(edu.usd.btl.REST.ToolBetsEntityFacadeREST.class);
+        resources.add(edu.usd.btl.REST.ToolBridgeEntityFacadeREST.class);
         resources.add(edu.usd.btl.REST.ToolResource.class);
     }
     
