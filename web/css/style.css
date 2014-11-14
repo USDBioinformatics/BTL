@@ -1,9 +1,9 @@
 body{
-    background-color:#000;
+    background-color:#ffffff;
 }
 
-.whiteBG{
-    background-color:#fff;
+.redBG{
+    background-color:#ff0000;
 }
 
 .inputRow{
@@ -12,18 +12,9 @@ body{
     margin-bottom:10px;
 }
 
-#inputSelect{
-    color:#fff;
-    background-color:#666666;
-    margin-top:10px;
-    padding:10px;
-    border:3px #fff solid;
-}
-
 .border{
-    border: 3px #fff solid;
+    border: 3px #ff0000 solid;
 }
-
 
 .bin {
   min-height: 100px;
@@ -52,7 +43,14 @@ body{
 }
 
 h1,h3{
-    color:white;
+    color:#000;
+}
+h3{
+    color:#000;
+}
+
+.blackTxt{
+    color:#000;
 }
 
 #outputPanel{

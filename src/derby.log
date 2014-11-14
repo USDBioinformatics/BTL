@@ -1,10 +1,10 @@
 ----------------------------------------------------------------
-Wed Nov 12 16:06:17 CST 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-0149-a60a-f88f-0000037c1d30 
-on database directory memory:C:\Users\tyler.jones\Desktop\GitHub\BTL\src\inmemory  with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
-Loaded from file:/C:/Users/tyler.jones/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/3.1.2.2/glassfish-embedded-all-3.1.2.2.jar
+Fri Nov 14 03:57:58 CST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-0149-adbc-e7e0-000002cc2dd8 
+on database directory memory:C:\Users\Tyler_000\Desktop\GitHub\BTL\src\inmemory  with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
+Loaded from file:/C:/Users/Tyler_000/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/3.1.2.2/glassfish-embedded-all-3.1.2.2.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_11-b12
-user.dir=C:\Users\tyler.jones\Desktop\GitHub\BTL\src
+java.runtime.version=1.8.0_05-b13
+user.dir=C:\Users\Tyler_000\Desktop\GitHub\BTL\src
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
