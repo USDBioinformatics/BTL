@@ -18,33 +18,34 @@ import javax.enterprise.context.RequestScoped;
 /**
  * REST Web Service
  *
- * @author Tyler.Jones
+ * @author Tyler_000
  */
-@Path("tools")
+@Path("generic")
 @RequestScoped
-public class ToolResource {
+public class TestResource {
 
     @Context
     private UriInfo context;
 
     /**
-     * Creates a new instance of ToolResource
+     * Creates a new instance of TestResource
      */
-    public ToolResource() {
+    public TestResource() {
     }
 
     /**
-     * Retrieves representation of an instance of edu.usd.btl.REST.ToolResource
+     * Retrieves representation of an instance of edu.usd.btl.REST.TestResource
      * @return an instance of java.lang.String
      */
     @GET
     @Produces("application/json")
     public String getJson() {
-        return "Hello, World!";
+        
+        return "{'id': '001'}";
     }
 
     /**
-     * PUT method for updating or creating an instance of ToolResource
+     * PUT method for updating or creating an instance of TestResource
      * @param content representation for the resource
      * @return an HTTP response with content of the updated or created resource.
      */

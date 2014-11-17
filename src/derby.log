@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Fri Nov 14 03:57:58 CST 2014:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-0149-adbc-e7e0-000002cc2dd8 
+Fri Nov 14 15:28:23 CST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): instance a816c00e-0149-b034-ff85-000002120bb0 
 on database directory memory:C:\Users\Tyler_000\Desktop\GitHub\BTL\src\inmemory  with class loader sun.misc.Launcher$AppClassLoader@6bc7c054 
 Loaded from file:/C:/Users/Tyler_000/.m2/repository/org/glassfish/main/extras/glassfish-embedded-all/3.1.2.2/glassfish-embedded-all-3.1.2.2.jar
 java.vendor=Oracle Corporation

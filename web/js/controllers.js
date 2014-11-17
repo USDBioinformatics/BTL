@@ -9,6 +9,10 @@ controllers.controller('GlobalController', function ($scope, SimilarToolService,
         "imageUrl": ""
 
     };
+    
+    $scope.restData = {
+        "data": ""
+    };
 
     $scope.toolInputs = {
         "format": []
@@ -164,13 +168,16 @@ controllers.controller('PrevNextToolController', function ($scope, NewSimTools) 
 //        alert(toolOuptus.format.length);
 //        alert('OUTPUT CHANGED');
     });
+});
 
-    controllers.controller('RESTController', function ($scope, RestServices) { //data is injected from app.factory 'Data' service
-        RestServices.success(function (data) {
-            $scope.restCategories = data;
-        });
-        
-        $scope.testRest = "Testing Rest Controller";
+controllers.controller('RESTController', function ($scope, RestServices) { //data is injected from app.factory 'Data' service
+    RestServices.success(function (data) {
+        $scope.restData.data = data;
     });
 
+    $scope.testRest = {
+        "test": "Testing Rest Controller"
+    };
 });
+
+

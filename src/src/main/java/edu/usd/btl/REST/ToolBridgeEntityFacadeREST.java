@@ -26,40 +26,13 @@ import javax.ws.rs.Produces;
  * @author Tyler
  */
 @Stateless
-@Path("edu.usd.btl.toolbridge.toolbridgeentity")
+@Path("bridges")
 public class ToolBridgeEntityFacadeREST extends AbstractFacade<ToolBridgeEntity> {
     @PersistenceContext(unitName = "MavenMySQLTest")
     private EntityManager em;
 
     public ToolBridgeEntityFacadeREST() {
         super(ToolBridgeEntity.class);
-    }
-
-    @POST
-    @Override
-    @Consumes({"application/xml", "application/json"})
-    public void create(ToolBridgeEntity entity) {
-        super.create(entity);
-    }
-
-    @PUT
-    @Path("{id}")
-    @Consumes({"application/xml", "application/json"})
-    public void edit(@PathParam("id") Integer id, ToolBridgeEntity entity) {
-        super.edit(entity);
-    }
-
-    @DELETE
-    @Path("{id}")
-    public void remove(@PathParam("id") Integer id) {
-        super.remove(super.find(id));
-    }
-
-    @GET
-    @Path("{id}")
-    @Produces({"application/xml", "application/json"})
-    public ToolBridgeEntity find(@PathParam("id") Integer id) {
-        return super.find(id);
     }
 
     @GET
@@ -69,19 +42,6 @@ public class ToolBridgeEntityFacadeREST extends AbstractFacade<ToolBridgeEntity>
         return super.findAll();
     }
 
-    @GET
-    @Path("{from}/{to}")
-    @Produces({"application/xml", "application/json"})
-    public List<ToolBridgeEntity> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
-    }
-
-    @GET
-    @Path("count")
-    @Produces("text/plain")
-    public String countREST() {
-        return String.valueOf(super.count());
-    }
 
     @Override
     protected EntityManager getEntityManager() {

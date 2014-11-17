@@ -26,7 +26,7 @@ import javax.ws.rs.Produces;
  * @author Tyler
  */
 @Stateless
-@Path("edu.usd.btl.toolbets.toolbetsentity")
+@Path("tools")
 public class ToolBetsEntityFacadeREST extends AbstractFacade<ToolBetsEntity> {
     @PersistenceContext(unitName = "MavenMySQLTest")
     private EntityManager em;
@@ -35,52 +35,11 @@ public class ToolBetsEntityFacadeREST extends AbstractFacade<ToolBetsEntity> {
         super(ToolBetsEntity.class);
     }
 
-    @POST
-    @Override
-    @Consumes({"application/xml", "application/json"})
-    public void create(ToolBetsEntity entity) {
-        super.create(entity);
-    }
-
-    @PUT
-    @Path("{id}")
-    @Consumes({"application/xml", "application/json"})
-    public void edit(@PathParam("id") Integer id, ToolBetsEntity entity) {
-        super.edit(entity);
-    }
-
-    @DELETE
-    @Path("{id}")
-    public void remove(@PathParam("id") Integer id) {
-        super.remove(super.find(id));
-    }
-
-    @GET
-    @Path("{id}")
-    @Produces({"application/xml", "application/json"})
-    public ToolBetsEntity find(@PathParam("id") Integer id) {
-        return super.find(id);
-    }
-
     @GET
     @Override
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json"})
     public List<ToolBetsEntity> findAll() {
         return super.findAll();
-    }
-
-    @GET
-    @Path("{from}/{to}")
-    @Produces({"application/xml", "application/json"})
-    public List<ToolBetsEntity> findRange(@PathParam("from") Integer from, @PathParam("to") Integer to) {
-        return super.findRange(new int[]{from, to});
-    }
-
-    @GET
-    @Path("count")
-    @Produces("text/plain")
-    public String countREST() {
-        return String.valueOf(super.count());
     }
 
     @Override
