@@ -172,7 +172,7 @@ controllers.controller('PrevNextToolController', function ($scope, NewSimTools) 
 
 controllers.controller('RESTController', function ($scope, RestServices) { //data is injected from app.factory 'Data' service
     RestServices.success(function (data) {
-        $scope.restData.data = data;
+        $scope.restData = data;
     });
 
     $scope.testRest = {

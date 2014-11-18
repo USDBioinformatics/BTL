@@ -37,7 +37,7 @@ public class ToolBridgeEntityFacadeREST extends AbstractFacade<ToolBridgeEntity>
 
     @GET
     @Override
-    @Produces({"application/xml", "application/json"})
+    @Produces({"application/json"})
     public List<ToolBridgeEntity> findAll() {
         return super.findAll();
     }

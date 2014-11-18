@@ -19,8 +19,8 @@ public class testFileRead {
         //read owl ontology file
         OntologyFileRead ontFileRead = new OntologyFileRead();
         //ArrayList<BioPortalElement> nodeList = ontFileRead.readFile("C:\\Users\\Tyler\\Documents\\GitHub\\BTL\\src\\ontology_files\\EDAM_1.3.owl");
-        //ArrayList<BioPortalElement> nodeList = ontFileRead.readFile("C:\\Users\\tyler.jones\\Desktop\\GitHub\\BTL\\src\\ontology_files\\EDAM_1.3.owl");
-        ArrayList<BioPortalElement> nodeList = ontFileRead.readFile("C:\\Users\\Tyler_000\\Desktop\\GitHub\\BTL\\src\\ontology_files\\EDAM_1.3.owl");
+        ArrayList<BioPortalElement> nodeList = ontFileRead.readFile("C:\\Users\\tyler.jones\\Desktop\\GitHub\\BTL\\src\\ontology_files\\EDAM_1.3.owl");
+        //ArrayList<BioPortalElement> nodeList = ontFileRead.readFile("C:\\Users\\Tyler_000\\Desktop\\GitHub\\BTL\\src\\ontology_files\\EDAM_1.3.owl");
 
 //print
         for(BioPortalElement node : nodeList){
