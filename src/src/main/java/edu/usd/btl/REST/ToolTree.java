@@ -45,8 +45,18 @@ public class ToolTree {
     public String getJson() throws Exception {
         OntoToTree tree = new OntoToTree();
         String testJson = tree.getOntoJson(); //get EDAM ontology nodes as JSON
-        tree.jsonToJava();
+        tree.jsonToJava(testJson);
         return testJson;
+    }
+    
+    @GET
+    @Path("/get")
+    @Produces("application/json")
+    public String getTree() throws Exception {
+        OntoToTree tree = new OntoToTree();
+        String testJson = tree.getOntoJson(); //get EDAM ontology nodes as JSON
+        
+        return "jsonToJava";
     }
 
     /**

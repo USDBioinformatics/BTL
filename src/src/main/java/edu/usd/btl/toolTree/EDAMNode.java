@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import javax.ejb.Stateless;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Generated("org.jsonschema2pojo")
@@ -19,6 +20,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 "parent",
 "uri"
 })
+@Stateless
 public class EDAMNode {
 
 @JsonProperty("name")

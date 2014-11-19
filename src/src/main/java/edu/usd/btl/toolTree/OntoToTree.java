@@ -19,14 +19,17 @@ import java.util.List;
  * @author Tyler
  */
 public class OntoToTree {
-    
 
+    /*
+        Convert EDAM.owl file ArrayList to JSON
+     */
     public String getOntoJson() throws Exception {
         ObjectMapper treeMapper = new ObjectMapper(); //create new Jackson Mapper
         OntologyFileRead ontFileRead = new OntologyFileRead();
         ArrayList<edu.usd.btl.ontology.BioPortalElement> nodeList = ontFileRead.readFile("C:\\Users\\Tyler\\Documents\\GitHub\\BTL\\src\\ontology_files\\EDAM_1.3.owl");
+        
+        //write nodelist to JSON string
         ObjectWriter treeWriter = treeMapper.writer().withDefaultPrettyPrinter();
-
         String edamJSON = treeMapper.writeValueAsString(nodeList);
         System.out.println("**** EDAM ONTOLOGY JSON ****" + edamJSON);
 
@@ -37,9 +40,9 @@ public class OntoToTree {
      This section reads from a local JSON file, similar to the one above.'
      Converts JSON to Java Objects
      */
-    public void jsonToJava() throws Exception {
+    public String jsonToJava(String input) throws Exception {
         try {
-            File input = new File("C:\\Users\\Tyler\\Documents\\GitHub\\BTL\\src\\ontology_files\\testEdam.json");
+            //File input = new File("C:\\Users\\Tyler\\Documents\\GitHub\\BTL\\src\\ontology_files\\testEdam.json");
 
             /*
              CONVERT JSON TO JAVA OBJECTS
@@ -50,7 +53,7 @@ public class OntoToTree {
             List<EDAMNode> ontologyNodes = treeMapper.readValue(input, treeMapper.getTypeFactory().constructCollectionType(
                     List.class, EDAMNode.class
             ));
-
+            System.out.println("********SIZE OF ontologyNodes*********" + ontologyNodes.size());
             for (EDAMNode node : ontologyNodes) { //for each ontology node
                 System.out.println(node.getName());
                 //build tree from ontology nodes
@@ -58,13 +61,10 @@ public class OntoToTree {
             }
             JsonNode rootNode = treeMapper.readValue(getOntoJson(), JsonNode.class);
             JsonNode tool = rootNode.get("name");
-            
+
             System.out.println("\n\n\n\n****************************" + tool.toString());
-            System.out.println(
-                    "**** ONTOLOGY SIZE *****" + ontologyNodes.size());
-
+            System.out.println("**** ONTOLOGY SIZE *****" + ontologyNodes.size());
             String jsonOutput = treeWriter.writeValueAsString(ontologyNodes.get(0));
-
             System.out.println(
                     "\n\n****ONTOLOGY JSON OUPUT*****+\n"
                     + jsonOutput);
@@ -74,5 +74,6 @@ public class OntoToTree {
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
+        return "jsonToJava success";
     }
 }

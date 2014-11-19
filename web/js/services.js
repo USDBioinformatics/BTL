@@ -19,7 +19,7 @@ sharedServices.factory('DataTreeService', function($http) {
 });
 
 sharedServices.factory('RestServices', function($http) {
-    return  $http.get("http://localhost:8080/src/resources/categories");
+    return  $http.get("http://localhost:8080/src/resources/tooltree");
 });
 
 

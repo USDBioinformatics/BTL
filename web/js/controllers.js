@@ -170,10 +170,14 @@ controllers.controller('PrevNextToolController', function ($scope, NewSimTools) 
     });
 });
 
-controllers.controller('RESTController', function ($scope, RestServices) { //data is injected from app.factory 'Data' service
-    RestServices.success(function (data) {
-        $scope.restData = data;
+controllers.controller('RESTController', function ($scope, $http) { //data is injected from app.factory 'Data' service
+    $http.get("http://localhost:8080/src/resources/tooltree").then(function(resp){
+        console.log('Success', resp);
+        $scope.restData = resp.data;
     });
+//    RestServices.success(function (data) {
+//        $scope.restData = data;
+//    });
 
     $scope.testRest = {
         "test": "Testing Rest Controller"
