@@ -5,13 +5,14 @@
  */
 package edu.usd.btl.toolTree;
 
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.ejb.Stateless;
 
 /**
  *
  * @author Tyler.Jones
  */
-public class ToolTree {
+@Stateless
+public class ToolTreeBean {
     
     public Integer id;
     
