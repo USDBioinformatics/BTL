@@ -19,14 +19,15 @@ import java.util.List;
  * @author Tyler
  */
 public class OntoToTree {
+    
 
     /*
         Convert EDAM.owl file ArrayList to JSON
      */
-    public String getOntoJson() throws Exception {
+    public static String getOntoJson() throws Exception {
         ObjectMapper treeMapper = new ObjectMapper(); //create new Jackson Mapper
         OntologyFileRead ontFileRead = new OntologyFileRead();
-        ArrayList<edu.usd.btl.ontology.BioPortalElement> nodeList = ontFileRead.readFile("C:\\Users\\Tyler\\Documents\\GitHub\\BTL\\src\\ontology_files\\EDAM_1.3.owl");
+        ArrayList<edu.usd.btl.ontology.BioPortalElement> nodeList = ontFileRead.readFile(".\\ontology_files\\EDAM_1.3.owl");
         
         //write nodelist to JSON string
         ObjectWriter treeWriter = treeMapper.writer().withDefaultPrettyPrinter();
